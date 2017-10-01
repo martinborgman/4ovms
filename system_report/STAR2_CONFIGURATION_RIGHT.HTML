@@ -1,0 +1,673 @@
+<html><head><style>
+body {font-family:sans-serif; background-color:#FFFFFF;}
+a:link    {color:black; text-decoration:underline;font-weight:bold;}
+a:visited {color:black; text-decoration:underline;font-weight:bold;}
+a:hover   {color:black; text-decoration:underline;font-weight:bold; background:grey;}
+a:active  {color:black; text-decoration:underline;font-weight:bold;}
+a:focus   {color:black; text-decoration:underline;font-weight:bold; background:grey;}
+</style></head><body>
+<a name="Node-Information"></a>
+<h1>Node Information</h1>
+<p><table border=2><tr bgcolor=lightseagreen><td align=center><b>Nodename<td align=center><b>HW-Name
+<td align=center><b>OS-Type<td align=center><b>OS-Vers.<td align=center><b>Systemdisk
+<td align=center><b>Systemroot<td align=center><b>CPU<td align=center><b>Memory
+<td align=center><b>Boottime<td align=center><b>Console<td align=center><b>PALcode
+<tr bgcolor=blanchedalmond><td  align="center"><b>STAR2<td>AlphaServer 1000A 5/400<td>VMS/Alpha<td>F8.3    <td>DSA2:<td>[SYS0.]
+<td align="right">1<td align="right">1024MB<td align=right> 1-JAN-2007 23:17:16.00<td>V5.7-80         <td>1.21-4          
+</table><p>
+<a name="Show-Cluster-Information"></a>
+<h1>Show Cluster</h1>
+<h2>Show Cluster</h2>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+View of Cluster from system ID 65533  node: STAR2                                                               4-MAR-2007 19:40:39
++----------------------------------------------------+-------------------------------------------------------+
+|                       SYSTEMS                      |                        MEMBERS                        |
++--------+----------------------------+--------------+-------+--------+--------+---------+-------------------+
+|  NODE  |           HW_TYPE          |   SOFTWARE   | VOTES | EXPECT | QUORUM |  STATUS |  TRANSITION_TIME  |
++--------+----------------------------+--------------+-------+--------+--------+---------+-------------------+
+| STAR2  | AlphaServer 1000A 5/400    | VMS F8.3     |     1 |      1 |      1 | MEMBER  |  1-JAN-2007 23:18 |
++--------+----------------------------+--------------+-------+--------+--------+---------+-------------------+
++----------------------------------------------------------------------------------------------+
+|                                            CLUSTER                                           |
++--------+-----------+----------+---------+------------+-------------------+-------------------+
+| CL_EXP | CL_QUORUM | CL_VOTES | QF_VOTE | CL_MEMBERS |       FORMED      |  LAST_TRANSITION  |
++--------+-----------+----------+---------+------------+-------------------+-------------------+
+|      1 |         1 |        1 | NO      |          1 |  1-JAN-2007 23:18 |  1-JAN-2007 23:18 |
++--------+-----------+----------+---------+------------+-------------------+-------------------+
+</pre>
+<h2>SCACP Channels</h2>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+
+STAR2 PEA0 Channel Summary  4-MAR-2007 19:40:40.28:
+
+  Remote  LAN Dev Channel  Total    ECS     Priority       Buffer   Delay   Load    Total              ---- Most Recent ----
+   Node   Loc Rmt  State  Errors   State    Cur  Mgt  Hops  Size    (uSec)  Class  Pkts(S+R)    CH Opened Time     CH Closed Time
+   ----   --- ---  -----  ------   -----    ---  ---  ----  ----    ------  -----  ---------    --------------     --------------
+  STAR2   LCL LCL  Open        1  Y(T,P,F)    0    0    2   1426     244.1     0    9183386  01-JAN 23:17:20.50  (No time)         
+
+</pre>
+<h2>SCACP VC</h2>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+
+STAR2 PEA0 VC Summary  4-MAR-2007 19:40:40.54:
+
+  Remote  VC    Total            Channels  ECS MaxPkt   ReXmt   --XmtWindow--    Xmt    Total    ----------- Most Recent -----------
+-
+  Node    State Errors  Xmt:TMO  Open ECS  Pri  Size  TMO(uSec) Cur  Max  Mgt  Options Pkts(S+R)   VC Opened Time     VC Closed Time
+  ------  ----- ------ ---------  ---- ---  ---  ----  --------- ---- ---- ---- ------  --------- ------------------ ---------------
+---
+   STAR2  Open       0  Infinite    1   1    0  1426  3000000.0    1    8    0                  5 01-JAN 23:17:20.50  (No time)     
+    
+
+</pre>
+<h2>SCACP Circuits</h2>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+</pre>
+<h2>SCACP LAN_DEVICE</h2>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+
+STAR2 PEA0 Device Summary  4-MAR-2007 19:40:40.94:
+
+         Device   Errors +                             Mgt   Buffer  MgtMax  Line     Total         Current
+  Device  Type     Events    Status                 Priority  Size   BufSiz  Speed  Pkts(S+R)     LAN Address
+  ------  ----     ------    ------                 --------  ----   ------  -----  ---------     -----------
+   LCL                  0  Run Online Local Restart       0   1426       0    N/A    11417904  00-00-00-00-00-00
+   EWA   DE500          0  Run Online Restart             0   1426       0    100     1737214  00-06-2B-02-2C-F8
+
+</pre>
+<a name="Conflog-Information"></a>
+<h1>Configuration Logicals</h1>
+<table border="2"><tr bgcolor=lightseagreen><td align=center><b>Logical Name<td align=center><b>Value<td align=center><b>Table<td align=center><b>Characteristics
+<tr bgcolor=blanchedalmond><td><b>USR100<td>&nbsp;DSA100:<td>LNM$SYSTEM_TABLE<td>EXECUTIVE,terminal,concealed
+</table>
+<a name="Recovery-Information"></a>
+<h1>Recovery Information</h1>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Funktion<td align=center><b>Disk<td align=center><b>Label<td align=center><b>Shadow Members
+<tr bgcolor=blanchedalmond><td><b>Systemdisk STAR2<td>DSA2<td>ALPHASYS<td>$2$DKB0,$2$DKB100
+<tr bgcolor=blanchedalmond><td><b>sys$sysdevice<td>DSA2<td>ALPHASYS<td>$2$DKB0,$2$DKB100
+<tr bgcolor=blanchedalmond><td><b>usr100<td>DSA100<td>USR100<td>$2$DKB200,$2$DKB300
+</table>
+<a name="GETSYI-Information"></a>
+<h1>System Information</h1>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Typ<td align=center><b>STAR2</tr>
+<tr bgcolor=blanchedalmond><td><b>ACTIVECPU_CNT
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>AVAILCPU_CNT
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ARCHFLAG
+<td>114688</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ARCH_NAME
+<td>Alpha</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ARCH_TYPE
+<td>2</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>BOOTTIME
+<td> 1-JAN-2007 23:17:16.00</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CHARACTER_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_EVOTES
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_FSYSID
+<td>00000000FFFD</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_FTIME
+<td> 1-JAN-2007 23:18:19.94</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_MEMBER
+<td>TRUE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_NODES
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_QUORUM
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CLUSTER_VOTES
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CONSOLE_VERSION
+<td>V5.7-80         </td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CONTIG_GBLPAGES
+<td>39777712</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CPU
+<td>128</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>CPUTYPE
+<td>5</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>D_FLOAT_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>DECIMAL_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>DEF_PRIO_MAX
+<td>63</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>DEF_PRIO_MIN
+<td>0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>DECNET_FULLNAME
+<td></td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ERLBUFFERPAGES
+<td>8</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ERRORLOGBUFFERS
+<td>4</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>F_FLOAT_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>FREE_GBLPAGES
+<td>39777840</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>FREE_GBLSECTS
+<td>1383</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>GALAXY_SHMEMSIZE
+<td>0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>G_FLOAT_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>GH_RSRVPGCNT
+<td>0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>H_FLOAT_EMULATED
+<td>FALSE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HP_CONFIG_SBB_CNT
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HP_CONFIG_SP_CNT
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HP_ACTIVE_SP_CNT
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HP_ACTIVE_CPU_CNT
+<td>&nbsp;</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HW_MODEL
+<td>1311</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>HW_NAME
+<td>AlphaServer 1000A 5/400</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>ITB_ENTRIES
+<td>12</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>MEMSIZE
+<td>131072</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_AREA
+<td>63</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_CSID
+<td>00010001</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_EVOTES
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_HWTYPE
+<td>ALPH</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_HWVERS
+<td>051F0000000000000000001B</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_NUMBER
+<td>1021</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_QUORUM
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_SWINCARN
+<td>00A611836D883580</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_SWTYPE
+<td>VMS </td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_SWVERS
+<td>F8.3</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_SYSTEMID
+<td>00000000FFFD</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODE_VOTES
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>NODENAME
+<td>STAR2</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PAGEFILE_FREE
+<td>312496</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PAGEFILE_PAGE
+<td>312496</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PAGE_SIZE
+<td>8192</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PSXFIFO_PRIO_MAX
+<td>63</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PSXFIFO_PRIO_MIN
+<td>16</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PSXRR_PRIO_MAX
+<td>63</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PSXRR_PRIO_MIN
+<td>16</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>PALCODE_VERSION
+<td>1.21-4          </td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>QUANTUM
+<td>5</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>RAD_CPUS
+<td>0,0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>RAD_MAX_RADS
+<td>1</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>RAD_MEMSIZE
+<td>0,131072</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>RAD_SHMEMSIZE
+<td>0,0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>REAL_CPUTYPE
+<td>7</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>SID
+<td>-2147483648</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>SWAPFILE_FREE
+<td>1576</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>SWAPFILE_PAGE
+<td>1576</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>USED_GBLPAGCNT
+<td>222160</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>USED_GBLPAGMAX
+<td>222256</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>VERSION
+<td>F8.3    </td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>SCS_EXISTS
+<td>TRUE</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>SYSTEM_RIGHTS
+<td>SYS$NODE_STAR2</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>VECTOR_EMULATOR
+<td>0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>VP_MASK
+<td>0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>VP_NUMBER
+<td>0</td>
+</tr>
+</table>
+<a name="Console-Variables"></a>
+<h1>Console Variables</h1>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Typ<td align=center><b>STAR2</tr>
+<tr bgcolor=blanchedalmond><td><b>auto_action
+<td>HALT</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>boot_dev
+<td>SCSI 0 3000 0 0 0 0 0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>bootdef_dev
+<td>SCSI 0 3000 0 0 0 0 0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>booted_dev
+<td>SCSI 0 3000 0 0 0 0 0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>boot_file
+<td>undefined</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>booted_file
+<td>undefined</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>boot_osflags
+<td>0,0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>booted_osflags
+<td>0,0</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>boot_reset
+<td>OFF</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>dump_dev
+<td>undefined</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>enable_audit
+<td>ON</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>license
+<td>MU</td>
+</tr>
+<tr bgcolor=blanchedalmond><td><b>tty_dev
+<td>0</td>
+</tr>
+</table>
+<a name="Crash-Information"></a>
+<h1>Crash Information</h1>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+Date               Version   System/CPU           Node    Bugcheck      Process          PC        Module                   Offset
+-----------------  --------  -------------------  ------  ------------  ---------------  --------  -----------------------  --------
+11-JAN-2006 21:14  V8.2      AlphaServer DS10L 6  STAR2   CLUEXIT       NULL             803DE3B0  SYS$CLUSTER              000023B0
+17-FEB-2006 19:37  V8.2      AlphaServer DS10L 6  STAR2   CLUEXIT       NULL             803DE3B0  SYS$CLUSTER              000023B0
+30-JUN-2006 20:53  F8.3      AlphaServer DS10L 6  STAR2   SSRVEXCEPT    SYSTEM           000200A4  stealth                  000200A4
+30-JUN-2006 21:37  F8.3      AlphaServer DS10L 6  STAR2   SSRVEXCEPT    TON              000200A4  stealth                  000200A4
+17-AUG-2006 20:42  F8.3      AlphaServer 1000A 5  STAR2   MACHINECHK    NULL             800176A8  SYS$CPU_ROUTINES_1B05    000036A8
+</pre>
+<a name="ADMIN-Information"></a>
+<h1>ADMIN Accounts</h1>
+<a name="ADMIN-Information"></a> <h1>ADMIN Information</h1>
+<a name="Network-Information"></a>
+<h1>Network Information</h1>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Nodename<td align=center><b>DECnet-Vers.<td align=center><b>DECnet-Address<td align=center><b>IP-Version<td align=center><b>IP-Address<td align=center><b>IP-Netmask<td align=center><b>IP-Gateway
+<tr bgcolor=blanchedalmond><td align="center"><b><a title="TCPIP SHOW SERVICE" href="STAR2_CONFIGURATION_ADDINFO.HTML#APP_0">STAR2</a>
+<td>IV:<td align="right"><td align="right"><td align="right"><td align="right"><td align="right">
+</table>
+<a name="Network-Devices"></a>
+<h1>Network Device Characteristics</h1>
+<p><table Border="2"><tr bgcolor=lightseagreen><td colspan="2"><center><b>STAR2<tr bgcolor=lightseagreen><td>
+<td><center><b>EWA0:
+<tr bgcolor=blanchedalmond><td>Device buffer size
+<td>1500
+<tr bgcolor=blanchedalmond><td>Controller mode
+<td>Normal
+<tr bgcolor=blanchedalmond><td>Internal loopback mode
+<td>External
+<tr bgcolor=blanchedalmond><td>Hardware LAN address
+<td>00-06-2B-02-2C-F8
+<tr bgcolor=blanchedalmond><td>Multicast address list
+<td>
+<tr bgcolor=blanchedalmond><td>Communication medium
+<td>Ethernet
+<tr bgcolor=blanchedalmond><td>Current LAN address
+<td>FF-FF-FF-FF-FF-FF
+<tr bgcolor=blanchedalmond><td>Minimum receive buffers
+<td>128
+<tr bgcolor=blanchedalmond><td>Maximum receive buffers
+<td>256
+<tr bgcolor=blanchedalmond><td>Full duplex enable
+<td>Yes
+<tr bgcolor=blanchedalmond><td>Full duplex operational
+<td>Yes
+<tr bgcolor=blanchedalmond><td>Current LAN address
+<td>00-06-2B-02-2C-F8
+<tr bgcolor=blanchedalmond><td>Line media type
+<td>TwistedPair
+<tr bgcolor=blanchedalmond><td>Line speed (mbps)
+<td>100
+<tr bgcolor=blanchedalmond><td>Auto-negotiation
+<td>Disabled
+<tr bgcolor=blanchedalmond><td>Flow control
+<td>Disabled
+<tr bgcolor=blanchedalmond><td>Jumbo frames
+<td>Disabled
+<tr bgcolor=blanchedalmond><td>Failover priority
+<td>0
+<tr bgcolor=blanchedalmond><td>Link state
+<td>Link Down
+</table>
+<a name="LAT-Information"></a>
+<h1>LAT Information</h1>
+<table border=2>
+<tr bgcolor=lightseagreen><td align=center><b>System<td align=center><b>Status<td align=center><b>Identification
+</Table>
+<a name="Disk-Information"></a>
+<h1>Disk Information</h1>
+<h2>Usage</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center rowspan=2><b>Disk<td align=center rowspan=2><b>L a b e l<td align=center rowspan=2><b>Type
+<td align=center rowspan=2><b>Str.<td align=center rowspan=2><b>RO<td align=center><b>C.size<td align=center><b>E.size
+<td align=center><b>Capacity<td align=center colspan=2><b>U s e d
+<td align=center colspan=2><b>F r e e<td align=center><b>I O</tr>
+<tr bgcolor=lightseagreen><td align=center><b>[blocks]<td align=center><b>[blocks]<td align=center><b>MB<td align=center><b>MB
+<td align=center><b>%<td align=center><b>MB<td align=center><b>%<td align=center><b>1000
+<tr bgcolor=blanchedalmond><td align=right><b><a title="SHOW DEVICE/FULL DSA2" href="STAR2_CONFIGURATION_ADDINFO.HTML#APP_1">DSA2</a>
+<td>ALPHASYS<td align=right>&nbsp;COMPAQ BD0366349C
+<td align=right>&nbsp;5<td align=right>RW<td align=right>16<td align=right>5
+<td align=right>  34.732<td align=right>  25.410
+<td align=right>74<td align=right>   9.322<td align=right >26
+<td align=right>   3.525
+<tr bgcolor=blanchedalmond><td align=right><b><a title="SHOW DEVICE/FULL DSA100" href="STAR2_CONFIGURATION_ADDINFO.HTML#APP_2">DSA100</a>
+<td>USR100<td align=right>&nbsp;Generic SCSI disk
+<td align=right>&nbsp;5<td align=right>RW<td align=right>16<td align=right>5
+<td align=right>  34.732<td align=right>  17.888
+<td align=right>52<td align=right>  16.844<td align=right >48
+<td align=right>     931
+<tr bgcolor=blanchedalmond><td align=right><b><a title="SHOW DEVICE/FULL $2$DKA400" href="STAR2_CONFIGURATION_ADDINFO.HTML#APP_3">$2$DKA400</a>
+<td>SOURCE_FILES<td align=right>&nbsp;TOSHIBA CD-ROM XM-6401TA
+<td align=right>&nbsp;3<td align=right>RO<td align=right>0<td align=right>0
+<td align=right>       1<td align=right>       0
+<td align=right>0<td align=right>       1<td align=right >100
+<td align=right>       3
+<tr bgcolor=blanchedalmond><td>&nbsp;<td align=right><b>Totals:  # 3<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;<td>&nbsp;
+<td align=right><b>  69.465<td align=right><b>  43.298<td align=right><b>63
+<td align=right><b>  26.167<td align=right><b>37<td align=right><b>   4.459
+</table>
+<a name="Disk-Information1"></a>
+<h2>Fragmentation</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Disk<td align=center><b>Free<br>[%]<td align=center><b>File<br>Fragmentation<td align=center><b>Space<br>Fragmentation<td align=center><b>Most fragmented file</tr>
+<tr bgcolor=blanchedalmond><td align=right><b>DSA2:<td  align=right>53<td bgcolor=orange>2.323 (FAIR)<td >0.018 (EXCELLENT)
+<td>[SYS0.COMMUNIGATE.DOMAINS.VANDERZWET-DYNDNS-ORG.TON-MACNT]INBOX.mbox;1 ( 636466/636480 blocks; 4807 fragments)</tr>
+<tr bgcolor=blanchedalmond><td align=right><b>DSA100:<td  align=right>48<td >0.437 (EXCELLENT)<td >0.000 (EXCELLENT)
+<td>[lic]FREEWARE70_2.ZIP;1 ( 567591/567600 blocks; 7153 fragments)</tr>
+</table>
+<a name="Disk-Information2"></a>
+<h2>Shadowsets</h2>
+<table border=2><tr bgcolor=lightseagreen><td align=center><b>Shadowset<td align=center><b>Label<td align=center><b>Members</tr>
+<tr bgcolor=blanchedalmond><td align=right><b>DSA2<td>ALPHASYS<td><b>$2$DKB0</b>[COMPAQ BD0366349C],<b>$2$DKB100</b>[COMPAQ BD0366349C]
+<tr bgcolor=blanchedalmond><td align=right><b>DSA100<td>USR100<td><b>$2$DKB200</b>[COMPAQ BC036122C3],<b>$2$DKB300</b>[COMPAQ BD036635C5]
+</table>
+<p>
+<pre style={background-color:blanchedalmond;font-weight:normal;}>
+Device	  Mbr                           				  Active
+ Name 	  Cnt  Priority Virtual Unit State				 on Node
+_DSA100:   2     5000	Steady State
+_DSA2:     2     5000	Steady State
+Total of 2 Operational shadow sets; 0 in Mount Verification; 0 not mounted
+</pre>
+<a name="Disk-Information3"></a>
+<h2>Raidsets</h2>
+<table border=2><tr bgcolor=lightseagreen><td align=center><b>Raidset<td align=center><b>Type<td align=center><b>Label<td align=center><b>State<td align=center><b>Members
+<tr bgcolor=blanchedalmond><td colspan=5><b>No Raidsets defined!</b></br>
+</table>
+<a name="Disk-Information4"></a>
+<h2>Volumesets</h2>
+<table border=2><tr bgcolor=lightseagreen><td align=center><b>Master Volume<td align=center><b>Label<td align=center colspan=2><b>Additional Members</tr>
+<tr bgcolor=blanchedalmond><td colspan=3><b>No Volumesets defined!</b></br>
+</table><br>
+<a name="Disk-Information5"></a>
+<h2>Backupdates</h2>
+<table border=2><tr bgcolor=lightseagreen><td align="center"><b>Disk</b><td align="center"><b>Label</b><td align="center"><b>Image Backup</b><td align="center"><b>Incr.Backup</b>
+<tr bgcolor=blanchedalmond><td align="right"><b>_DSA2:</b><td>ALPHASYS<td>no backup recorded<td>no backup recorded
+<tr bgcolor=blanchedalmond><td align="right"><b>_DSA100:</b><td>USR100<td>no backup recorded<td>no backup recorded
+</table>
+<a name="Queue-Definiton"></a>
+<h1>Queue Information</h1>
+<h2>Batch Definitions</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>No.<td align=center><b>Description<td align=center><b>Nodes<td align=center><b>State<td align=center><b>Mode<td align=center><b>Flags
+<tr bgcolor=blanchedalmond><td colspan=6><b>No Queues defined!
+</table>
+<h2>Printer Definitions</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>No.<td align=center><b>Description<td align=center><b>Device<td align=center><b>Nodes<td align=center><b>State<td align=center><b>Mode<td align=center><b>Flags
+<tr bgcolor=blanchedalmond><td colspan=7><b>No Queues defined!
+</table>
+<h2>Punch Definitions</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>No.<td align=center><b>Description<td align=center><b>Device<td align=center><b>Nodes<td align=center><b>State<td align=center><b>Mode<td align=center><b>Flags
+<tr bgcolor=blanchedalmond><td colspan=7><b>No Queues defined!
+</table>
+<a name="Queue-Generic"></a>
+<h2>Generic Queues</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Name<td align=center><b>Description<td align=center><b>Targets
+<tr bgcolor=blanchedalmond><td align=right><b>SYS$BATCH<td>&nbsp;<td>STAR2$BATCH
+</table>
+<a name="Queue-Batch"></a>
+<h2>Batchqueues</h2>
+<table border="2">
+<tr bgcolor=lightseagreen><td align=center><b>Name<td align=center><b>Description<td align=center><b>Autostart<td align=center><b>Jobs<td align=center><b>Prio<td align=center><b>CPUdefault<td align=center><b>CPUmax
+<tr bgcolor=blanchedalmond><td align=right><b>ALPHA$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;1<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>IA64$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;1<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>STAR1$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;1<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>STAR2$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;2<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>STAR3$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;2<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>SYS$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;1<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+<tr bgcolor=blanchedalmond><td align=right><b>VAX$BATCH<td>&nbsp;<td>&nbsp;<td align=right>&nbsp;1<td align=right>&nbsp;4<td>&nbsp;   0 00:00:00.00<td>&nbsp;   0 00:00:00.00
+</table>
+<a name="Queue-Symbiont"></a>
+<h2>Symbiontqueues</h2>
+<table border="2">
+</table>
+<h1>Software Information</h1>
+<a name="Software-Information-STAR2"></a>
+<h1>STAR2</h1>
+<h2>PRODUCT Show Product</h2>
+<table border=2 colspacing=2><tr bgcolor=lightseagreen><td align=center colspan=6><b>STAR2
+<tr bgcolor=lightseagreen><td align=center><b>Product<td align=center><b>Type<td align=center><b>State<td align=center><b>Maintenance<td align=center><b>Referenced By
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CDSA T2.2-133            <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CSWB V1.7-11             <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CSWS V1.3-1              <td> Full LP   <td> Installed <td>Q AXPVMS CSWS131_UPDATE V1.0<td>
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CSWS_PHP V1.2-1          <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS GTK V1.2-10              <td> Full LP   <td> Installed <td>                                   C<td>PQ AXPVMS CSWB V1.7-11
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS OPL V1.0-0A9             <td> Full LP   <td> Installed <td>                                   C<td>PQ AXPVMS CSWB V1.7-11
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS PERL V5.8-6              <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS CXML V5.2-1              <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF M1.6             <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF_SUPPORT F8.3     <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS VMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS FORRTL V7.6-1            <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS FORTRAN V7.6-1
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS FORTRAN V7.6-1           <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV T2.1-0               <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS JAVA142 V1.4-24P2        <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS JAVA150 V1.5-1           <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS OPENVMS F8.3             <td> Platform  <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS TCPIP T5.6-7             <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS F8.3                 <td> Oper Syste<td> Installed <td>                                   C<td>PQ AXPVMS CDSA T2.2-133
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS DWMOTIF M1.6
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS FORRTL V7.6-1
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS FORTRAN V7.6-1
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS GNV T2.1-0
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   D<td>EC AXPVMS TCPIP T5.6-7
+<tr bgcolor=blanchedalmond><td align=right><b>                                    <td>           <td>           <td>                                   H<td>P AXPVMS KERBEROS T3.0-72
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS AVAIL_MAN_BASE F8.3       <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS KERBEROS T3.0-72          <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS SSL T1.3-266              <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS TDC_RT V2.2-103           <td> Full LP   <td> Installed <td>                                   D<td>EC AXPVMS OPENVMS F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>HP VMS AVAIL_MAN_COL V2.4-1         <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>HP VMS DFU V3.2                     <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>JFP AXPVMS LIBBZ2 V1.0-2            <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>JFP AXPVMS MYSQL V4.1-14            <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>JFP AXPVMS OPENSSL097E V1.2-0       <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>JFP AXPVMS ZLIB V1.2-3              <td> Full LP   <td> Installed<td><td>
+<tr bgcolor=blanchedalmond><td align=right><b>STLK AXPVMS CGATEPRO V5.0-9         <td> Full LP   <td> Installed<td><td>
+</table>
+<a name="Software-Information0-STAR2"></a>
+<h2>PRODUCT Show History (since 2006)</h2>
+<table border=2 colspacing=2><tr bgcolor=lightseagreen><td align=center colspan=4><b>STAR2
+<tr bgcolor=lightseagreen><td align=center><b>Product<td align=center><b>Type<td align=center><b>Operation<td align=center><b>Date
+<tr bgcolor=blanchedalmond><td align=right><b>HP VMS DFU V3.2                     <td> Full LP   <td> Install   <td align=right> (U) 04-MAR-2007
+<tr bgcolor=blanchedalmond><td align=right><b>STLK AXPVMS CGATEPRO V5.0-9         <td> Full LP   <td> Install   <td align=right> (U) 07-OCT-2006
+<tr bgcolor=blanchedalmond><td align=right><b>STLK AXPVMS CGATEPRO V5.0-1         <td> Full LP   <td> Remove    <td align=right>  -  07-OCT-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV T2.1-0               <td> Full LP   <td> Install   <td align=right> Val 19-JUN-2006
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS PERL V5.8-6              <td> Full LP   <td> Install   <td align=right> (U) 02-JUN-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV T2.1-0               <td> Full LP   <td> Install   <td align=right> (U) 28-MAY-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV V2.1-1               <td> Full LP   <td> Remove    <td align=right>  -  28-MAY-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV V2.1-1               <td> Full LP   <td> Install   <td align=right> (U) 10-MAY-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV V2.1-0               <td> Full LP   <td> Remove    <td align=right>  -  10-MAY-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV V2.1-0               <td> Full LP   <td> Install   <td align=right> (U) 20-APR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS GNV V1.6-2               <td> Full LP   <td> Remove    <td align=right>  -  20-APR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CDSA T2.2-133            <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF M1.6             <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF_SUPPORT F8.3     <td> Full LP   <td> Install   <td align=right> (U) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS OPENVMS F8.3             <td> Platform  <td> Install   <td align=right> (U) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS TCPIP T5.6-7             <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS F8.3                 <td> Oper Syste<td> Install   <td align=right> (U) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS AVAIL_MAN_BASE F8.3       <td> Full LP   <td> Install   <td align=right> (U) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS KERBEROS T3.0-72          <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS SSL T1.3-266              <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS TDC_RT V2.2-103           <td> Full LP   <td> Install   <td align=right> (C) 28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS CDSA V2.1-331            <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF V1.5             <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS DWMOTIF_ECO01 V1.5       <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS OPENVMS V8.2             <td> Platform  <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS TCPIP V5.5-11ECO1        <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS V8.2                 <td> Oper Syste<td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_DRIVER V1.0       <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_GRAPHICS V1.0     <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_IOGEN V1.0        <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_IPC V1.0          <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_MUP V1.0          <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_SYS V2.0          <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_UPDATE V1.0       <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMSSYMLINKS V1.8-0       <td> Patch     <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS AVAIL_MAN_BASE V8.2       <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS KERBEROS V2.1-72          <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP AXPVMS TDC_RT V2.1-69            <td> Full LP   <td> Remove    <td align=right>  -  28-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>CPQ AXPVMS PERL V5.8-6              <td> Full LP   <td> Install   <td align=right>     26-MAR-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS JAVA150 V1.5-1           <td> Full LP   <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS TCPIP V5.5-11ECO1        <td> Full LP   <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_DRIVER V1.0       <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_IOGEN V1.0        <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_IPC V1.0          <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_MUP V1.0          <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_SYS V2.0          <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS VMS82A_UPDATE V1.0       <td> Patch     <td> Install   <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>DEC AXPVMS TCPIP V5.5-11            <td> Full LP   <td> Remove    <td align=right>     19-FEB-2006
+<tr bgcolor=blanchedalmond><td align=right><b>HP VMS AVAIL_MAN_COL V2.4-1         <td> Full LP   <td> Install   <td align=right>     28-JAN-2006
+</table>
+<a name="Software-Information1-STAR2"></a> <h2>SW Versions</h2>
+<table border=2 colspacing=2><tr bgcolor=lightseagreen><td align=center colspan=6><b>STAR2
+<tr bgcolor=lightseagreen><td align=center><b>Produkt<td align=center><b>Version<td align=center><b>Produkt<td align=center><b>Version<td align=center><b>Produkt<td align=center><b>Version
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;AVAIL_MAN_BASE<td>&nbsp;F8.3<td align=right><b>&nbsp;DWMOTIF_SUPPORT<td>&nbsp;F8.3<td align=right><b>&nbsp;OPENSSL097E<td>&nbsp;V1.2-0
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;AVAIL_MAN_COL<td>&nbsp;V2.4-1<td align=right><b>&nbsp;FORRTL<td>&nbsp;V7.6-1<td align=right><b>&nbsp;OPENVMS<td>&nbsp;F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CC<td>&nbsp;V7.1-015<td align=right><b>&nbsp;FORTRAN<td>&nbsp;V7.6-1<td align=right><b>&nbsp;OPL<td>&nbsp;V1.0-0A9
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CDSA<td>&nbsp;T2.2-133<td align=right><b>&nbsp;FORTRAN<td>&nbsp;V7.6-198-48D52<td align=right><b>&nbsp;PERL<td>&nbsp;V5.8-6
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CGATEPRO<td>&nbsp;V5.0-9<td align=right><b>&nbsp;GNV<td>&nbsp;T2.1-0<td align=right><b>&nbsp;SSL<td>&nbsp;T1.3-266
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CSWB<td>&nbsp;V1.7-11<td align=right><b>&nbsp;GTK<td>&nbsp;V1.2-10<td align=right><b>&nbsp;TCPIP<td>&nbsp;T5.6-7
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CSWS<td>&nbsp;V1.3-1<td align=right><b>&nbsp;JAVA142<td>&nbsp;V1.4-24P2<td align=right><b>&nbsp;TDC_RT<td>&nbsp;V2.2-103
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CSWS_PHP<td>&nbsp;V1.2-1<td align=right><b>&nbsp;JAVA150<td>&nbsp;V1.5-1<td align=right><b>&nbsp;TNT<td>&nbsp;V3.3
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CXML<td>&nbsp;V5.2-1<td align=right><b>&nbsp;KERBEROS<td>&nbsp;T3.0-72<td align=right><b>&nbsp;VMS<td>&nbsp;F8.3
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;CXX<td>&nbsp;V7.1-015<td align=right><b>&nbsp;LANCP<td>&nbsp;X-80<td align=right><b>&nbsp;VPM<td>&nbsp;X-6
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;DCE<td>&nbsp;V3.2-040917<td align=right><b>&nbsp;LATACP<td>&nbsp;V3.0-205<td align=right><b>&nbsp;ZLIB<td>&nbsp;V1.2-3
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;DECEVENT<td>&nbsp;V3.4<td align=right><b>&nbsp;LIBBZ2<td>&nbsp;V1.0-2<td align=right><b>&nbsp;<td>&nbsp;
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;DFU<td>&nbsp;V3.2<td align=right><b>&nbsp;LMCP<td>&nbsp;V2.1-X035-XB4U<td align=right><b>&nbsp;<td>&nbsp;
+<tr bgcolor=blanchedalmond><td align=right><b>&nbsp;DWMOTIF<td>&nbsp;M1.6<td align=right><b>&nbsp;MYSQL<td>&nbsp;V4.1-14<td align=right><b>&nbsp;<td>&nbsp;
+</table>
+<a name="Software-Information2-STAR2"></a> <h2>VMSINSTAL History (since 2006)</h2>
+<table border=2 colspacing=2><tr bgcolor=lightseagreen><td align=center colspan=6><b>STAR2
+<tr bgcolor=lightseagreen><td align=center><b>Product<td align=center><b>Version<td align=center><b>Date<td align=center><b>State<td align=center><b>IVP<td align=center><b>Installer
+</table>
+<hr>SYSTEM_REPORT V1.5 finished at  4-MAR-2007 19:41:04.84
+</body></html>

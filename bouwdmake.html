@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="eUIv4Ec1vFO2oe6ZvW3kau7gblSqEyEnBHULZYvro8U">
+    <title>OpenSource on OpenVMS porting project</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="css/4ovms.css" rel="stylesheet">
+  </head>
+
+  <body role="document">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">4ovms</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" role="main">
+
+      <div class="row">
+        <h1>Log of the first steps of a build of dmake on OpenVMS Alpha.</h1>
+        <p>
+<pre>
+ Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2  
+
+Username: <strong>user12</strong>
+Password: 
+   Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+%DCL-I-SUPERSEDE, previous value of DCL$PATH has been superseded
+$ <strong>dir</strong>
+
+Directory USERS:[user12]
+
+.bashrc;1           bouwdmake.log;1     dmake.DIR;1         login.com;1        
+temp.DIR;1          
+
+Total of 5 files.
+$ <strong>bash</strong>
+bash$ <strong>ls</strong>
+bouwdmake.log  dmake  login.com  temp
+bash$ <strong>cd dmake/</strong>
+bash$ <strong>ls</strong>
+AUTHORS		 autogen.sh	 dstdarg.h   makefile.mk    rulparse.c
+COPYING		 config.guess	 expand.c    man	    stamp-h
+CVS		 config.h.in	 extern.h    missing	    startup
+ChangeLog	 config.sub	 function.c  mkinstalldirs  stat.c
+INSTALL		 configure	 getinp.c    msdos	    state.c
+Makefile.am	 configure.in	 hash.c      os2	    stdmacs.h
+Makefile.in	 dag.c		 imacs.c     parse.c	    struct.h
+NEWS		 db.h		 infer.c     patchlvl.h     sysintf.c
+_head		 dbug		 install-sh  path.c	    tempnam.c
+_install	 depcomp	 itypes.h    percent.c	    tos
+acinclude.in	 dmake.c	 mac	     posix.h	    unix
+acinclude.m4	 dmake.h	 macparse.c  qssl	    version.h
+acinclude.m4.in  dmakeroot.h.in  make.bat    quit.c	    vextern.h
+aclocal.m4	 dmdump.c	 make.c      rcsclean.awk   win95
+alloc.h		 dmstring.c	 make.cmd    readme	    winnt
+bash$ <strong>grep conftest\.dir configure</strong>
+  mkdir conftest.dir
+  cp "$am_depcomp" conftest.dir
+  cd conftest.dir
+  rm -rf conftest.dir
+bash$ <strong>mv configure configure.org</strong>
+bash$ <strong>sed 's/conftest\.dir/conftest\.ddd/g' configure.org &gt; configure</strong>
+bash$ <strong>./configure --build=alpha-hp-vms --disable-dependency-tracking</strong>
+checking for a BSD-compatible install... /gnu/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... no
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking for a BSD-compatible install... /gnu/bin/install -c
+checking whether ln -s works... no, using ln
+checking whether make sets $(MAKE)... (cached) yes
+checking for ranlib... :
+checking for gawk... (cached) gawk
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... no
+checking for unistd.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking for strings.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking spawn.h usability... no
+checking spawn.h presence... no
+checking for spawn.h... no
+checking wait.h usability... yes
+checking wait.h presence... yes
+checking for wait.h... yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking for an ANSI C-conforming const... yes
+checking for off_t... yes
+checking for size_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for short... yes
+checking size of short... 2
+checking for int... yes
+checking size of int... 4
+checking for long... yes
+checking size of long... 4
+checking for working memcmp... yes
+checking return type of signal handlers... void
+checking whether utime accepts a null argument... yes
+checking for vprintf... yes
+checking for _doprnt... no
+checking for getcwd... yes
+checking for getwd... no
+checking for putenv... yes
+checking for strcspn... yes
+checking for strerror... yes
+checking for strspn... yes
+checking for strstr... yes
+checking for setvbuf... yes
+checking for tzset... yes
+checking for settz... no
+checking for mkstemp... yes
+checking for tempnam... yes
+checking the operating system... 
+configure: error: OpenVMS operating system is n
+ot suitable to build dmake!
+<br>
+<em>
+ Adding OpenVMS as a supported platform to the configure script:
+After:
+        "GNU")
+          OS_VERSION=linux
+          ;;
+Add:
+<strong>        "OpenVMS")
+          OS_VERSION=OpenVMS
+          ;;
+</strong>
+<br>
+Then restart the configure script. (or start here.. ;-))
+</em>
+<br>
+bash$ <strong>./configure --build=alpha-hp-vms --disable-dependency-tracking</strong>
+checking for a BSD-compatible install... /gnu/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... no
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking for a BSD-compatible install... /gnu/bin/install -c
+checking whether ln -s works... no, using ln
+checking whether make sets $(MAKE)... (cached) yes
+checking for ranlib... :
+checking for gawk... (cached) gawk
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for egrep... grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... no
+checking for unistd.h... yes
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking for strings.h... (cached) yes
+checking for sys/types.h... (cached) yes
+checking for sys/stat.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking spawn.h usability... no
+checking spawn.h presence... no
+checking for spawn.h... no
+checking wait.h usability... yes
+checking wait.h presence... yes
+checking for wait.h... yes
+checking sys/wait.h usability... yes
+checking sys/wait.h presence... yes
+checking for sys/wait.h... yes
+checking for an ANSI C-conforming const... yes
+checking for off_t... yes
+checking for size_t... yes
+checking whether time.h and sys/time.h may both be included... yes
+checking for short... yes
+checking size of short... 2
+checking for int... yes
+checking size of int... 4
+checking for long... yes
+checking size of long... 4
+checking for working memcmp... yes
+checking return type of signal handlers... void
+checking whether utime accepts a null argument... yes
+checking for vprintf... yes
+checking for _doprnt... no
+checking for getcwd... yes
+checking for getwd... no
+checking for putenv... yes
+checking for strcspn... yes
+checking for strerror... yes
+checking for strspn... yes
+checking for strstr... yes
+checking for setvbuf... yes
+checking for tzset... yes
+checking for settz... no
+checking for mkstemp... yes
+checking for tempnam... yes
+checking the operating system... checked (OpenVMS)
+configure: creating ./config.status
+config.status: creating Makefile
+config.status: creating unix/Makefile
+config.status: creating startup/Makefile
+config.status: creating startup/unix/Makefile
+config.status: creating startup/unix/linux/Makefile
+config.status: creating startup/unix/solaris/Makefile
+config.status: creating startup/unix/macosx/Makefile
+config.status: creating startup/unix/sysvr4/Makefile
+config.status: creating startup/unix/cygwin/Makefile
+config.status: creating startup/winnt/Makefile
+config.status: creating startup/winnt/mingw/Makefile
+config.status: creating startup/winnt/msvc6/Makefile
+config.status: creating msdos/Makefile
+config.status: creating win95/Makefile
+config.status: creating win95/microsft/Makefile
+config.status: creating config.h
+config.status: executing depfiles commands
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user12/dmake'
+Making all in unix
+make[2]: Entering directory `/USERS/user12/dmake/unix'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'arlib.c' || echo './'`arlib.c
+
+#include &lt;ar.h&gt;
+.^
+%CC-F-NOINCLFILEF, Cannot find file &lt;ar.h&gt; specified in #include directive.
+at line number 97 in file USERS:[user12.dmake.unix]arlib.c;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'dcache.c' || echo './'`dcache.c
+
+#include "public.h"
+.^
+%CC-F-NOINCLFILEF, Cannot find file "public.h" specified in #include directive.
+at line number 146 in file USERS:[user12.dmake]extern.h;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'dirbrk.c' || echo './'`dirbrk.c
+
+#include "public.h"
+.^
+%CC-F-NOINCLFILEF, Cannot find file "public.h" specified in #include directive.
+at line number 146 in file USERS:[user12.dmake]extern.h;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'rmprq.c' || echo './'`rmprq.c
+
+#include "public.h"
+.^
+%CC-F-NOINCLFILEF, Cannot find file "public.h" specified in #include directive.
+at line number 146 in file USERS:[user12.dmake]extern.h;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'ruletab.c' || echo './'`ruletab.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'runargv.c' || echo './'`runargv.c
+
+#include "public.h"
+.^
+%CC-F-NOINCLFILEF, Cannot find file "public.h" specified in #include directive.
+at line number 146 in file USERS:[user12.dmake]extern.h;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I.. -I.. -I../unix/OpenVMS/gnu -I../unix  -I..
+/unix/OpenVMS    -g -c `test -f 'tempnam.c' || echo './'`tempnam.c
+
+#endif
+......^
+%CC-W-EMPTYFILE, Source file does not contain any declarations.
+at line number 106 in file USERS:[user12.dmake.unix]tempnam.c;1
+rm -f libunix.a
+ar cru libunix.a arlib.o dcache.o dirbrk.o rmprq.o ruletab.o runargv.o tempnam.o
+ 
+%LIBRAR-W-OPENIN, error opening USERS:[user12.dmake.unix]arlib.o; as input
+-RMS-E-FNF, file not found
+%LIBRAR-W-OPENIN, error opening USERS:[user12.dmake.unix]dcache.o; as input
+-RMS-E-FNF, file not found
+%LIBRAR-W-OPENIN, error opening USERS:[user12.dmake.unix]dirbrk.o; as input
+-RMS-E-FNF, file not found
+%LIBRAR-W-OPENIN, error opening USERS:[user12.dmake.unix]rmprq.o; as input
+-RMS-E-FNF, file not found
+%LIBRAR-W-OPENIN, error opening USERS:[user12.dmake.unix]runargv.o; as input
+-RMS-E-FNF, file not found
+%LIBRAR-W-COMCOD, compilation warnings in module TEMPNAM file USERS:[user12.dmak
+e.unix]tempnam.o;1
+: libunix.a
+make[2]: Leaving directory `/USERS/user12/dmake/unix'
+Making all in startup
+make[2]: Entering directory `/USERS/user12/dmake/startup'
+Making all in unix
+make[3]: Entering directory `/USERS/user12/dmake/startup/unix'
+Making all in OpenVMS
+/tmp/make002fd0: OpenVMS: invalid argument
+make[3]: *** [all-recursive] Error 1
+make[3]: Leaving directory `/USERS/user12/dmake/startup/unix'
+make[2]: *** [all-recursive] Error 1
+make[2]: Leaving directory `/USERS/user12/dmake/startup'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/USERS/user12/dmake'
+bash$ <strong>exit</strong>
+$ <strong>lo</strong>
+  USER12       logged out at 27-JUN-2004 22:39:44.43
+</pre>
+Not very succesfull, but there are some files and directories we can add to make things a lot better. Next time we'll go on.<br>
+First we have to check that all checks in the configure script resulted in a correct config.h.
+        </p>
+      </div>
+
+    </div><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Maintained by the OpenOffice on OpenVMS porting Project.</p>
+      </div>
+    </footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

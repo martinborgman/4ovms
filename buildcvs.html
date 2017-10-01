@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="eUIv4Ec1vFO2oe6ZvW3kau7gblSqEyEnBHULZYvro8U">
+    <title>OpenSource on OpenVMS porting project</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="css/4ovms.css" rel="stylesheet">
+  </head>
+
+  <body role="document">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">4ovms</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" role="main">
+
+      <div class="row">
+        <h1>Log of the steps of a build of cvs 1.11.17 on OpenVMS Alpha.</h1>
+        <p>I will post a summary of the modifications and commands used to build CVS 1.11.17. This page is just a log with some comments.
+<pre>
+ Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2  
+
+Username: <strong>user15</strong>
+Password: 
+   Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+%DCL-I-SUPERSEDE, previous value of DCL$PATH has been superseded
+$ <strong>bash</strong>
+bash$ <strong>ls -l</strong>
+total 2879
+-rwxr-x---   1 USER15   159       2947477 Jun 26 09:56 CVS-1_11_17_TAR.GZ
+-rwxr-x---   1 USER15   159             0 Jun 26 09:57 cvsbuild15.log
+-rwxr-x---   1 USER15   159           390 May 24 20:20 login.com
+drwxr-x--x   1 USER15   159           512 May 24 20:20 temp
+bash$ <strong>gunzip CVS-1_11_17_TAR.GZ</strong>
+bash$ <strong>ls -l</strong>
+total 10601
+-rwxr-x---   1 USER15   159      10854400 Jun 26 09:56 CVS-1_11_17_TAR
+-rwxr-x---   1 USER15   159             0 Jun 26 09:57 cvsbuild15.log
+-rwxr-x---   1 USER15   159           390 May 24 20:20 login.com
+drwxr-x--x   1 USER15   159           512 May 24 20:20 temp
+bash$ <strong>pax -rvf CVS-1_11_17_TAR</strong> 
+USTAR format archive assumed
+cvs-1.11.17/
+cvs-1.11.17/contrib/
+cvs-1.11.17/contrib/README
+cvs-1.11.17/contrib/Makefile.in
+cvs-1.11.17/contrib/ChangeLog
+cvs-1.11.17/contrib/Makefile.am
+cvs-1.11.17/contrib/check_cvs.in
+cvs-1.11.17/contrib/clmerge.in
+cvs-1.11.17/contrib/cln_hist.in
+cvs-1.11.17/contrib/commit_prep.in
+cvs-1.11.17/contrib/cvs_acls.in
+cvs-1.11.17/contrib/log.in
+cvs-1.11.17/contrib/log_accum.in
+cvs-1.11.17/contrib/mfpipe.in
+cvs-1.11.17/contrib/pvcs2rcs.in
+cvs-1.11.17/contrib/rcs2log.sh
+cvs-1.11.17/contrib/rcslock.in
+cvs-1.11.17/contrib/sccs2rcs.in
+cvs-1.11.17/contrib/.cvsignore
+cvs-1.11.17/contrib/intro.doc
+cvs-1.11.17/contrib/cvscheck.man
+cvs-1.11.17/contrib/cvs2vendor.sh
+cvs-1.11.17/contrib/cvscheck.sh
+cvs-1.11.17/contrib/cvshelp.man
+cvs-1.11.17/contrib/debug_check_log.sh
+cvs-1.11.17/contrib/descend.sh
+cvs-1.11.17/contrib/descend.man
+cvs-1.11.17/contrib/dirfns.shar
+cvs-1.11.17/contrib/rcs-to-cvs.sh
+cvs-1.11.17/contrib/rcs2sccs.sh
+cvs-1.11.17/doc/
+cvs-1.11.17/doc/Makefile.in
+cvs-1.11.17/doc/ChangeLog
+cvs-1.11.17/doc/Makefile.am
+cvs-1.11.17/doc/mdate-sh
+cvs-1.11.17/doc/mkman.in
+cvs-1.11.17/doc/stamp-1
+cvs-1.11.17/doc/stamp-vti
+cvs-1.11.17/doc/texinfo.tex
+cvs-1.11.17/doc/version-client.texi
+cvs-1.11.17/doc/version.texi
+cvs-1.11.17/doc/cvs.texinfo
+cvs-1.11.17/doc/cvsclient.texi
+cvs-1.11.17/doc/cvs.ps
+cvs-1.11.17/doc/cvs-paper.ps
+cvs-1.11.17/doc/cvsclient.ps
+cvs-1.11.17/doc/.cvsignore
+cvs-1.11.17/doc/ChangeLog.fsf
+cvs-1.11.17/doc/RCSFILES
+cvs-1.11.17/doc/cvs.1
+cvs-1.11.17/doc/cvs-paper.ms
+cvs-1.11.17/doc/cvs.man.header
+cvs-1.11.17/doc/cvs.man.footer
+cvs-1.11.17/doc/cvs.info
+cvs-1.11.17/doc/cvs.info-1
+cvs-1.11.17/doc/cvs.info-10
+cvs-1.11.17/doc/cvs.info-2
+cvs-1.11.17/doc/cvs.info-3
+cvs-1.11.17/doc/cvs.info-4
+cvs-1.11.17/doc/cvs.info-5
+cvs-1.11.17/doc/cvs.info-6
+cvs-1.11.17/doc/cvs.info-7
+cvs-1.11.17/doc/cvs.info-8
+cvs-1.11.17/doc/cvs.info-9
+cvs-1.11.17/doc/cvsclient.info
+cvs-1.11.17/doc/cvsclient.info-1
+cvs-1.11.17/doc/cvsclient.info-2
+cvs-1.11.17/doc/cvsclient.info-3
+cvs-1.11.17/emx/
+cvs-1.11.17/emx/config.h
+cvs-1.11.17/emx/rcmd.h
+cvs-1.11.17/emx/filesubr.c
+cvs-1.11.17/emx/startserver.c
+cvs-1.11.17/emx/stripslash.c
+cvs-1.11.17/emx/savecwd.c
+cvs-1.11.17/emx/system.c
+cvs-1.11.17/emx/README
+cvs-1.11.17/emx/ChangeLog
+cvs-1.11.17/emx/Makefile.in
+cvs-1.11.17/emx/.cvsignore
+cvs-1.11.17/emx/Makefile
+cvs-1.11.17/os2/
+cvs-1.11.17/os2/tcpip.h
+cvs-1.11.17/os2/config.h
+cvs-1.11.17/os2/pwd.h
+cvs-1.11.17/os2/dirent.h
+cvs-1.11.17/os2/rcmd.h
+cvs-1.11.17/os2/popen.h
+cvs-1.11.17/os2/mkdir.c
+cvs-1.11.17/os2/pwd.c
+cvs-1.11.17/os2/filesubr.c
+cvs-1.11.17/os2/dirent.c
+cvs-1.11.17/os2/run.c
+cvs-1.11.17/os2/stripslash.c
+cvs-1.11.17/os2/rcmd.c
+cvs-1.11.17/os2/waitpid.c
+cvs-1.11.17/os2/popen.c
+cvs-1.11.17/os2/porttcp.c
+cvs-1.11.17/os2/getpass.c
+cvs-1.11.17/os2/README
+cvs-1.11.17/os2/ChangeLog
+cvs-1.11.17/os2/Makefile.in
+cvs-1.11.17/os2/.cvsignore
+cvs-1.11.17/os2/test-makefile
+cvs-1.11.17/os2/Makefile
+cvs-1.11.17/os2/os2inc.h
+cvs-1.11.17/os2/watcom.mak
+cvs-1.11.17/src/
+cvs-1.11.17/src/Makefile.in
+cvs-1.11.17/src/ChangeLog
+cvs-1.11.17/src/Makefile.am
+cvs-1.11.17/src/cvsbug.in
+cvs-1.11.17/src/add.c
+cvs-1.11.17/src/admin.c
+cvs-1.11.17/src/annotate.c
+cvs-1.11.17/src/buffer.c
+cvs-1.11.17/src/checkin.c
+cvs-1.11.17/src/checkout.c
+cvs-1.11.17/src/classify.c
+cvs-1.11.17/src/client.c
+cvs-1.11.17/src/commit.c
+cvs-1.11.17/src/create_adm.c
+cvs-1.11.17/src/cvsrc.c
+cvs-1.11.17/src/diff.c
+cvs-1.11.17/src/edit.c
+cvs-1.11.17/src/entries.c
+cvs-1.11.17/src/error.c
+cvs-1.11.17/src/expand_path.c
+cvs-1.11.17/src/fileattr.c
+cvs-1.11.17/src/filesubr.c
+cvs-1.11.17/src/find_names.c
+cvs-1.11.17/src/hardlink.c
+cvs-1.11.17/src/hash.c
+cvs-1.11.17/src/history.c
+cvs-1.11.17/src/ignore.c
+cvs-1.11.17/src/import.c
+cvs-1.11.17/src/lock.c
+cvs-1.11.17/src/log.c
+cvs-1.11.17/src/login.c
+cvs-1.11.17/src/logmsg.c
+cvs-1.11.17/src/main.c
+cvs-1.11.17/src/mkmodules.c
+cvs-1.11.17/src/modules.c
+cvs-1.11.17/src/myndbm.c
+cvs-1.11.17/src/no_diff.c
+cvs-1.11.17/src/parseinfo.c
+cvs-1.11.17/src/patch.c
+cvs-1.11.17/src/rcs.c
+cvs-1.11.17/src/rcscmds.c
+cvs-1.11.17/src/recurse.c
+cvs-1.11.17/src/release.c
+cvs-1.11.17/src/remove.c
+cvs-1.11.17/src/repos.c
+cvs-1.11.17/src/root.c
+cvs-1.11.17/src/run.c
+cvs-1.11.17/src/scramble.c
+cvs-1.11.17/src/server.c
+cvs-1.11.17/src/stack.c
+cvs-1.11.17/src/status.c
+cvs-1.11.17/src/subr.c
+cvs-1.11.17/src/tag.c
+cvs-1.11.17/src/update.c
+cvs-1.11.17/src/version.c
+cvs-1.11.17/src/vers_ts.c
+cvs-1.11.17/src/watch.c
+cvs-1.11.17/src/wrapper.c
+cvs-1.11.17/src/zlib.c
+cvs-1.11.17/src/buffer.h
+cvs-1.11.17/src/client.h
+cvs-1.11.17/src/cvs.h
+cvs-1.11.17/src/edit.h
+cvs-1.11.17/src/error.h
+cvs-1.11.17/src/fileattr.h
+cvs-1.11.17/src/hardlink.h
+cvs-1.11.17/src/hash.h
+cvs-1.11.17/src/history.h
+cvs-1.11.17/src/myndbm.h
+cvs-1.11.17/src/rcs.h
+cvs-1.11.17/src/root.h
+cvs-1.11.17/src/server.h
+cvs-1.11.17/src/stack.h
+cvs-1.11.17/src/update.h
+cvs-1.11.17/src/watch.h
+cvs-1.11.17/src/.cvsignore
+cvs-1.11.17/src/ChangeLog-9194
+cvs-1.11.17/src/ChangeLog-9395
+cvs-1.11.17/src/ChangeLog-96
+cvs-1.11.17/src/ChangeLog-97
+cvs-1.11.17/src/build_src.com
+cvs-1.11.17/src/sanity.sh
+cvs-1.11.17/windows-NT/
+cvs-1.11.17/windows-NT/README
+cvs-1.11.17/windows-NT/Makefile.in
+cvs-1.11.17/windows-NT/ChangeLog
+cvs-1.11.17/windows-NT/Makefile.am
+cvs-1.11.17/windows-NT/fix-msvc-mak-head.pl
+cvs-1.11.17/windows-NT/fix-msvc-mak.pl
+cvs-1.11.17/windows-NT/stamp-ch
+cvs-1.11.17/windows-NT/config.h
+cvs-1.11.17/windows-NT/config.h.in
+cvs-1.11.17/windows-NT/ndir.h
+cvs-1.11.17/windows-NT/pwd.h
+cvs-1.11.17/windows-NT/rcmd.h
+cvs-1.11.17/windows-NT/filesubr.c
+cvs-1.11.17/windows-NT/mkdir.c
+cvs-1.11.17/windows-NT/ndir.c
+cvs-1.11.17/windows-NT/pwd.c
+cvs-1.11.17/windows-NT/rcmd.c
+cvs-1.11.17/windows-NT/run.c
+cvs-1.11.17/windows-NT/sockerror.c
+cvs-1.11.17/windows-NT/startserver.c
+cvs-1.11.17/windows-NT/stripslash.c
+cvs-1.11.17/windows-NT/waitpid.c
+cvs-1.11.17/windows-NT/woe32.c
+cvs-1.11.17/windows-NT/.cvsignore
+cvs-1.11.17/windows-NT/SCC/
+cvs-1.11.17/windows-NT/SCC/Makefile.in
+cvs-1.11.17/windows-NT/SCC/ChangeLog
+cvs-1.11.17/windows-NT/SCC/Makefile.am
+cvs-1.11.17/windows-NT/SCC/.cvsignore
+cvs-1.11.17/windows-NT/SCC/README.txt
+cvs-1.11.17/windows-NT/SCC/SCC.mak
+cvs-1.11.17/windows-NT/SCC/SCC.dsp
+cvs-1.11.17/windows-NT/SCC/scc.c
+cvs-1.11.17/windows-NT/SCC/scc.def
+cvs-1.11.17/windows-NT/SCC/pubscc.h
+cvs-1.11.17/zlib/
+cvs-1.11.17/zlib/README
+cvs-1.11.17/zlib/FAQ
+cvs-1.11.17/zlib/INDEX
+cvs-1.11.17/zlib/ChangeLog
+cvs-1.11.17/zlib/configure
+cvs-1.11.17/zlib/Makefile.b32
+cvs-1.11.17/zlib/Makefile.bor
+cvs-1.11.17/zlib/Makefile.dj2
+cvs-1.11.17/zlib/Makefile.in
+cvs-1.11.17/zlib/Makefile.msc
+cvs-1.11.17/zlib/Makefile.riscos
+cvs-1.11.17/zlib/Makefile.sas
+cvs-1.11.17/zlib/Makefile.tc
+cvs-1.11.17/zlib/Makefile.wat
+cvs-1.11.17/zlib/adler32.c
+cvs-1.11.17/zlib/compress.c
+cvs-1.11.17/zlib/crc32.c
+cvs-1.11.17/zlib/deflate.c
+cvs-1.11.17/zlib/deflate.h
+cvs-1.11.17/zlib/example.c
+cvs-1.11.17/zlib/gzio.c
+cvs-1.11.17/zlib/infblock.c
+cvs-1.11.17/zlib/infblock.h
+cvs-1.11.17/zlib/infcodes.c
+cvs-1.11.17/zlib/infcodes.h
+cvs-1.11.17/zlib/inffast.c
+cvs-1.11.17/zlib/inffast.h
+cvs-1.11.17/zlib/inffixed.h
+cvs-1.11.17/zlib/inflate.c
+cvs-1.11.17/zlib/inftrees.c
+cvs-1.11.17/zlib/inftrees.h
+cvs-1.11.17/zlib/infutil.c
+cvs-1.11.17/zlib/infutil.h
+cvs-1.11.17/zlib/maketree.c
+cvs-1.11.17/zlib/minigzip.c
+cvs-1.11.17/zlib/trees.c
+cvs-1.11.17/zlib/trees.h
+cvs-1.11.17/zlib/uncompr.c
+cvs-1.11.17/zlib/zconf.h
+cvs-1.11.17/zlib/zlib.h
+cvs-1.11.17/zlib/zutil.c
+cvs-1.11.17/zlib/zutil.h
+cvs-1.11.17/zlib/descrip.mms
+cvs-1.11.17/zlib/algorithm.txt
+cvs-1.11.17/zlib/zlib.3
+cvs-1.11.17/zlib/zlib.html
+cvs-1.11.17/zlib/msdos/
+cvs-1.11.17/zlib/msdos/Makefile.b32
+cvs-1.11.17/zlib/msdos/Makefile.bor
+cvs-1.11.17/zlib/msdos/Makefile.dj2
+cvs-1.11.17/zlib/msdos/Makefile.emx
+cvs-1.11.17/zlib/msdos/Makefile.msc
+cvs-1.11.17/zlib/msdos/Makefile.tc
+cvs-1.11.17/zlib/msdos/Makefile.w32
+cvs-1.11.17/zlib/msdos/Makefile.wat
+cvs-1.11.17/zlib/msdos/zlib.def
+cvs-1.11.17/zlib/msdos/zlib.rc
+cvs-1.11.17/zlib/nt/
+cvs-1.11.17/zlib/nt/Makefile.emx
+cvs-1.11.17/zlib/nt/Makefile.gcc
+cvs-1.11.17/zlib/nt/Makefile.nt
+cvs-1.11.17/zlib/nt/zlib.dnt
+cvs-1.11.17/zlib/amiga/
+cvs-1.11.17/zlib/amiga/Makefile.pup
+cvs-1.11.17/zlib/amiga/Makefile.sas
+cvs-1.11.17/zlib/os2/
+cvs-1.11.17/zlib/os2/Makefile.os2
+cvs-1.11.17/zlib/os2/zlib.def
+cvs-1.11.17/zlib/contrib/
+cvs-1.11.17/zlib/contrib/README.contrib
+cvs-1.11.17/zlib/contrib/visual-basic.txt
+cvs-1.11.17/zlib/contrib/asm386/
+cvs-1.11.17/zlib/contrib/asm386/gvmat32.asm
+cvs-1.11.17/zlib/contrib/asm386/gvmat32c.c
+cvs-1.11.17/zlib/contrib/asm386/mkgvmt32.bat
+cvs-1.11.17/zlib/contrib/asm386/zlibvc.def
+cvs-1.11.17/zlib/contrib/asm386/zlibvc.dsp
+cvs-1.11.17/zlib/contrib/asm386/zlibvc.dsw
+cvs-1.11.17/zlib/contrib/asm586/
+cvs-1.11.17/zlib/contrib/asm586/README.586
+cvs-1.11.17/zlib/contrib/asm586/match.S
+cvs-1.11.17/zlib/contrib/asm686/
+cvs-1.11.17/zlib/contrib/asm686/README.686
+cvs-1.11.17/zlib/contrib/asm686/match.S
+cvs-1.11.17/zlib/contrib/iostream/
+cvs-1.11.17/zlib/contrib/iostream/test.cpp
+cvs-1.11.17/zlib/contrib/iostream/zfstream.cpp
+cvs-1.11.17/zlib/contrib/iostream/zfstream.h
+cvs-1.11.17/zlib/contrib/iostream2/
+cvs-1.11.17/zlib/contrib/iostream2/zstream.h
+cvs-1.11.17/zlib/contrib/iostream2/zstream_test.cpp
+cvs-1.11.17/zlib/contrib/untgz/
+cvs-1.11.17/zlib/contrib/untgz/Makefile
+cvs-1.11.17/zlib/contrib/untgz/untgz.c
+cvs-1.11.17/zlib/contrib/untgz/makefile.w32
+cvs-1.11.17/zlib/contrib/minizip/
+cvs-1.11.17/zlib/contrib/minizip/ChangeLogUnzip
+cvs-1.11.17/zlib/contrib/minizip/Makefile
+cvs-1.11.17/zlib/contrib/minizip/miniunz.c
+cvs-1.11.17/zlib/contrib/minizip/minizip.c
+cvs-1.11.17/zlib/contrib/minizip/unzip.c
+cvs-1.11.17/zlib/contrib/minizip/unzip.h
+cvs-1.11.17/zlib/contrib/minizip/zip.c
+cvs-1.11.17/zlib/contrib/minizip/zip.h
+cvs-1.11.17/zlib/contrib/minizip/readme.txt
+cvs-1.11.17/zlib/contrib/minizip/unzip.def
+cvs-1.11.17/zlib/contrib/minizip/zip.def
+cvs-1.11.17/zlib/contrib/minizip/zlibvc.def
+cvs-1.11.17/zlib/contrib/minizip/zlibvc.dsp
+cvs-1.11.17/zlib/contrib/minizip/zlibvc.dsw
+cvs-1.11.17/zlib/contrib/delphi2/
+cvs-1.11.17/zlib/contrib/delphi2/d_zlib.bpr
+cvs-1.11.17/zlib/contrib/delphi2/d_zlib.cpp
+cvs-1.11.17/zlib/contrib/delphi2/readme.txt
+cvs-1.11.17/zlib/contrib/delphi2/zlib32.bpr
+cvs-1.11.17/zlib/contrib/delphi2/zlib32.cpp
+cvs-1.11.17/zlib/contrib/delphi2/zlib.bpg
+cvs-1.11.17/zlib/contrib/delphi2/zlib.bpr
+cvs-1.11.17/zlib/contrib/delphi2/zlib.cpp
+cvs-1.11.17/zlib/contrib/delphi2/zlib.pas
+cvs-1.11.17/zlib/contrib/delphi/
+cvs-1.11.17/zlib/contrib/delphi/zlibdef.pas
+cvs-1.11.17/zlib/contrib/delphi/zlib.mak
+cvs-1.11.17/zlib/Make_vms.com
+cvs-1.11.17/zlib/libz.dep
+cvs-1.11.17/zlib/libz.dsp
+cvs-1.11.17/zlib/libz.mak
+cvs-1.11.17/zlib/.cvsignore
+cvs-1.11.17/README
+cvs-1.11.17/Makefile.in
+cvs-1.11.17/configure
+cvs-1.11.17/AUTHORS
+cvs-1.11.17/COPYING
+cvs-1.11.17/COPYING.LIB
+cvs-1.11.17/ChangeLog
+cvs-1.11.17/INSTALL
+cvs-1.11.17/Makefile.am
+cvs-1.11.17/NEWS
+cvs-1.11.17/TODO
+cvs-1.11.17/acinclude.m4
+cvs-1.11.17/aclocal.m4
+cvs-1.11.17/compile
+cvs-1.11.17/config.h.in
+cvs-1.11.17/configure.in
+cvs-1.11.17/cvs.spec.in
+cvs-1.11.17/depcomp
+cvs-1.11.17/install-sh
+cvs-1.11.17/mdate-sh
+cvs-1.11.17/missing
+cvs-1.11.17/mkinstalldirs
+cvs-1.11.17/.cvsignore
+cvs-1.11.17/BUGS
+cvs-1.11.17/ChangeLog.zoo
+cvs-1.11.17/DEVEL-CVS
+cvs-1.11.17/FAQ
+cvs-1.11.17/HACKING
+cvs-1.11.17/MINOR-BUGS
+cvs-1.11.17/PROJECTS
+cvs-1.11.17/README.VMS
+cvs-1.11.17/TESTS
+cvs-1.11.17/build.com
+cvs-1.11.17/cvs-format.el
+cvs-1.11.17/cvsnt.dep
+cvs-1.11.17/cvsnt.dsp
+cvs-1.11.17/cvsnt.dsw
+cvs-1.11.17/cvsnt.mak
+cvs-1.11.17/cvs.spec
+cvs-1.11.17/mktemp.sh
+cvs-1.11.17/lib/
+cvs-1.11.17/lib/Makefile.in
+cvs-1.11.17/lib/ChangeLog
+cvs-1.11.17/lib/Makefile.am
+cvs-1.11.17/lib/dup2.c
+cvs-1.11.17/lib/fncase.c
+cvs-1.11.17/lib/fnmatch.c
+cvs-1.11.17/lib/fnmatch.h.in
+cvs-1.11.17/lib/ftruncate.c
+cvs-1.11.17/lib/getdate.c
+cvs-1.11.17/lib/gethostname.c
+cvs-1.11.17/lib/memmove.c
+cvs-1.11.17/lib/mkdir.c
+cvs-1.11.17/lib/rename.c
+cvs-1.11.17/lib/strerror.c
+cvs-1.11.17/lib/strstr.c
+cvs-1.11.17/lib/strtoul.c
+cvs-1.11.17/lib/valloc.c
+cvs-1.11.17/lib/waitpid.c
+cvs-1.11.17/lib/argmatch.c
+cvs-1.11.17/lib/getdate.y
+cvs-1.11.17/lib/getline.c
+cvs-1.11.17/lib/getopt.c
+cvs-1.11.17/lib/getopt1.c
+cvs-1.11.17/lib/getpass.c
+cvs-1.11.17/lib/md5.c
+cvs-1.11.17/lib/regex.c
+cvs-1.11.17/lib/savecwd.c
+cvs-1.11.17/lib/sighandle.c
+cvs-1.11.17/lib/stripslash.c
+cvs-1.11.17/lib/xgetwd.c
+cvs-1.11.17/lib/yesno.c
+cvs-1.11.17/lib/getline.h
+cvs-1.11.17/lib/getopt.h
+cvs-1.11.17/lib/getpagesize.h
+cvs-1.11.17/lib/md5.h
+cvs-1.11.17/lib/regex.h
+cvs-1.11.17/lib/savecwd.h
+cvs-1.11.17/lib/system.h
+cvs-1.11.17/lib/wait.h
+cvs-1.11.17/lib/xselect.h
+cvs-1.11.17/lib/xtime.h
+cvs-1.11.17/lib/xsize.h
+cvs-1.11.17/lib/.cvsignore
+cvs-1.11.17/lib/ChangeLog.fsf
+cvs-1.11.17/lib/build_lib.com
+cvs-1.11.17/lib/libcvs.dep
+cvs-1.11.17/lib/libcvs.dsp
+cvs-1.11.17/lib/libcvs.mak
+cvs-1.11.17/lib/xgssapi.h
+cvs-1.11.17/diff/
+cvs-1.11.17/diff/Makefile.in
+cvs-1.11.17/diff/ChangeLog
+cvs-1.11.17/diff/Makefile.am
+cvs-1.11.17/diff/diff.c
+cvs-1.11.17/diff/diff3.c
+cvs-1.11.17/diff/analyze.c
+cvs-1.11.17/diff/cmpbuf.c
+cvs-1.11.17/diff/cmpbuf.h
+cvs-1.11.17/diff/io.c
+cvs-1.11.17/diff/context.c
+cvs-1.11.17/diff/ed.c
+cvs-1.11.17/diff/normal.c
+cvs-1.11.17/diff/ifdef.c
+cvs-1.11.17/diff/util.c
+cvs-1.11.17/diff/dir.c
+cvs-1.11.17/diff/version.c
+cvs-1.11.17/diff/diff.h
+cvs-1.11.17/diff/side.c
+cvs-1.11.17/diff/system.h
+cvs-1.11.17/diff/diffrun.h
+cvs-1.11.17/diff/build_diff.com
+cvs-1.11.17/diff/diagmeet.note
+cvs-1.11.17/diff/libdiff.dep
+cvs-1.11.17/diff/libdiff.dsp
+cvs-1.11.17/diff/libdiff.mak
+cvs-1.11.17/man/
+cvs-1.11.17/man/Makefile.in
+cvs-1.11.17/man/ChangeLog
+cvs-1.11.17/man/Makefile.am
+cvs-1.11.17/man/.cvsignore
+cvs-1.11.17/man/cvs.5
+cvs-1.11.17/man/cvsbug.8
+cvs-1.11.17/tools/
+cvs-1.11.17/tools/README
+cvs-1.11.17/tools/Makefile.in
+cvs-1.11.17/tools/ChangeLog
+cvs-1.11.17/tools/Makefile.am
+cvs-1.11.17/tools/.cvsignore
+cvs-1.11.17/vms/
+cvs-1.11.17/vms/Makefile.in
+cvs-1.11.17/vms/ChangeLog
+cvs-1.11.17/vms/Makefile.am
+cvs-1.11.17/vms/build_vms.com
+cvs-1.11.17/vms/config.h
+cvs-1.11.17/vms/dir.h
+cvs-1.11.17/vms/filesubr.c
+cvs-1.11.17/vms/filutils.c
+cvs-1.11.17/vms/filutils.h
+cvs-1.11.17/vms/getpass.c
+cvs-1.11.17/vms/getwd.c
+cvs-1.11.17/vms/misc.c
+cvs-1.11.17/vms/misc.h
+cvs-1.11.17/vms/ndir.c
+cvs-1.11.17/vms/ndir.h
+cvs-1.11.17/vms/pathnames.h
+cvs-1.11.17/vms/pc.c
+cvs-1.11.17/vms/pipe.c
+cvs-1.11.17/vms/pipe.h
+cvs-1.11.17/vms/piped_child.c
+cvs-1.11.17/vms/pwd.c
+cvs-1.11.17/vms/pwd.h
+cvs-1.11.17/vms/rcmd.c
+cvs-1.11.17/vms/readlink.c
+cvs-1.11.17/vms/rmdir.c
+cvs-1.11.17/vms/startserver.c
+cvs-1.11.17/vms/stat.c
+cvs-1.11.17/vms/unlink.c
+cvs-1.11.17/vms/utime.c
+cvs-1.11.17/vms/vms-types.h
+cvs-1.11.17/vms/vms.h
+cvs-1.11.17/vms/vmsmunch.c
+cvs-1.11.17/vms/vmsmunch.h
+cvs-1.11.17/vms/vmsmunch_private.h
+cvs-1.11.17/vms/waitpid.c
+bash$ <strong>ls -l</strong>
+total 10603
+-rwxr-x---   1 USER15   159      10854400 Jun 26 09:56 CVS-1_11_17_TAR
+drwxrwxrwx   1 USER15   159          2048 Jun 26 10:00 cvs-1.11.17
+-rwxr-x---   1 USER15   159             0 Jun 26 09:57 cvsbuild15.log
+-rwxr-x---   1 USER15   159           390 May 24 20:20 login.com
+drwxr-x--x   1 USER15   159           512 May 24 20:20 temp
+bash$ <strong>cd cvs-1.11.17</strong>
+bash$ <strong>ls -l</strong>
+total 1402
+-rw-r--r--   1 USER15   159          3952 Feb  3 15:37 AUTHORS
+-rw-r--r--   1 USER15   159          4885 May 17 19:28 BUGS
+-rw-r--r--   1 USER15   159         12559 Jan 12  1999 COPYING
+-rw-r--r--   1 USER15   159         25337 Jan 12  1999 COPYING.LIB
+-rw-r--r--   1 USER15   159        158270 Jun  9 16:34 ChangeLog
+-rw-r--r--   1 USER15   159         28657 Dec  3  1994 ChangeLog.zoo
+-rw-r--r--   1 USER15   159          2774 Aug 14  2001 DEVEL-CVS
+-rw-r--r--   1 USER15   159        344374 Feb  3 15:37 FAQ
+-rw-r--r--   1 USER15   159          9910 Apr 14 22:53 HACKING
+-rw-r--r--   1 USER15   159         19727 Apr 14 22:54 INSTALL
+-rw-r--r--   1 USER15   159          2822 Dec  2  1997 MINOR-BUGS
+-rw-r--r--   1 USER15   159          1602 May 19 18:03 Makefile.am
+-rw-rw-r--   1 USER15   159         19245 Jun  9 16:46 Makefile.in
+-rw-r--r--   1 USER15   159         70066 Jun  9 16:34 NEWS
+-rw-r--r--   1 USER15   159          2388 Nov 12  1997 PROJECTS
+-rw-r--r--   1 USER15   159          4643 Feb 10 20:41 README
+-rw-r--r--   1 USER15   159          6841 Jun 25  1998 README.VMS
+-rw-r--r--   1 USER15   159         10881 Feb  3 15:37 TESTS
+-rw-r--r--   1 USER15   159         44519 Apr  7 02:51 TODO
+-rw-rw-r--   1 USER15   159         11721 Jun  9 16:34 acinclude.m4
+-rw-r--r--   1 USER15   159         46656 Jun  9 16:39 aclocal.m4
+-rwxr-xr-x   1 USER15   159           176 Aug  7  2001 build.com
+-rwxr-xr-x   1 USER15   159          1864 Jul 17  2001 compile
+-rw-r--r--   1 USER15   159         15989 Jun  9 16:49 config.h.in
+-rwxr-xr-x   1 USER15   159        421865 Jun  9 16:40 configure
+-rw-r--r--   1 USER15   159         34470 Jun  9 16:37 configure.in
+drwxrwxrwx   1 USER15   159          1024 Jun 26 09:59 contrib
+-rw-r--r--   1 USER15   159          3031 Mar 26  1997 cvs-format.el
+-rw-rw-r--   1 USER15   159          6942 Jun  9 16:49 cvs.spec
+-rw-r--r--   1 USER15   159          6930 Apr  1 02:43 cvs.spec.in
+-rw-rw-r--   1 USER15   159         22799 May 15 19:22 cvsnt.dep
+-rw-rw-r--   1 USER15   159         10546 May 15 19:22 cvsnt.dsp
+-rw-r--r--   1 USER15   159          1384 May 13 20:09 cvsnt.dsw
+-rw-r--r--   1 USER15   159         20109 May 15 19:22 cvsnt.mak
+-rwxr-xr-x   1 USER15   159         13866 Feb  3 15:37 depcomp
+drwxrwxrwx   1 USER15   159          1024 Jun 26 10:00 diff
+drwxrwxrwx   1 USER15   159          1536 Jun 26 09:59 doc
+drwxrwxrwx   1 USER15   159           512 Jun 26 09:59 emx
+-rwxr-xr-x   1 USER15   159          5598 Dec 21  2000 install-sh
+drwxrwxrwx   1 USER15   159          1536 Jun 26 10:00 lib
+drwxrwxrwx   1 USER15   159           512 Jun 26 10:00 man
+-rwxr-xr-x   1 USER15   159          2675 Jun 28  2001 mdate-sh
+-rwxr-xr-x   1 USER15   159          8259 Dec 21  2000 missing
+-rwxr-xr-x   1 USER15   159           724 Apr 12  2001 mkinstalldirs
+-rw-r--r--   1 USER15   159          1361 Feb  3 15:37 mktemp.sh
+drwxrwxrwx   1 USER15   159          1024 Jun 26 09:59 os2
+drwxrwxrwx   1 USER15   159          3072 Jun 26 09:59 src
+drwxrwxrwx   1 USER15   159           512 Jun 26 10:00 tools
+drwxrwxrwx   1 USER15   159          1024 Jun 26 10:01 vms
+drwxrwxrwx   1 USER15   159          1536 Jun 26 10:00 windows-NT
+drwxrwxrwx   1 USER15   159          2048 Jun 26 10:00 zlib
+bash$ <strong>mv configure configure.org</strong>
+bash$ <strong>sed 's/conftest\.dir/conftest\.ddd/g' configure.org &gt configure</strong>
+bash$ <strong>./configure --build=alpha-hp-vms --disable-dependency-tracking --disa/ble-server</strong>
+checking for a BSD-compatible install... /gnu/bin/install -c
+checking whether build environment is sane... yes
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking for prefix by checking for cvs... no
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... no
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking for style of include used by make... GNU
+checking dependency style of gcc... none
+checking whether gcc and cc understand -c and -o together... yes
+checking how to run the C preprocessor... gcc -E
+checking for egrep... grep -E
+checking for AIX... no
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... no
+checking for unistd.h... yes
+checking minix/config.h usability... no
+checking minix/config.h presence... no
+checking for minix/config.h... no
+checking for library containing strerror... none required
+checking for ranlib... :
+checking for bison... bison -y
+checking whether ln -s works... no, using ln
+checking for perl... /usr/local/bin/perl
+checking for csh... no
+checking for mktemp... mktemp
+checking for sendmail... no
+checking for pr... no
+checking for groff... no
+checking for roff... no
+checking for ps2pdf... /USERS/user15/cvs-1.11.17/missing ps2pdf
+checking for texi2dvi... /USERS/user15/cvs-1.11.17/missing texi2dvi
+checking whether #! works in shell scripts... yes
+checking for BSD VPATH bug in make... no
+checking for dirent.h that defines DIR... yes
+checking for library containing opendir... none required
+checking for ANSI C header files... (cached) yes
+checking for sys/wait.h that is POSIX.1 compatible... yes
+checking errno.h usability... yes
+checking errno.h presence... yes
+checking for errno.h... yes
+checking direct.h usability... no
+checking direct.h presence... no
+checking for direct.h... no
+checking fcntl.h usability... yes
+checking fcntl.h presence... yes
+checking for fcntl.h... yes
+checking fnmatch.h usability... no
+checking fnmatch.h presence... no
+checking for fnmatch.h... no
+checking io.h usability... no
+checking io.h presence... no
+checking for io.h... no
+checking limits.h usability... yes
+checking limits.h presence... yes
+checking for limits.h... yes
+checking for memory.h... (cached) yes
+checking ndbm.h usability... no
+checking ndbm.h presence... no
+checking for ndbm.h... no
+checking for string.h... (cached) yes
+checking syslog.h usability... no
+checking syslog.h presence... no
+checking for syslog.h... no
+checking sys/bsdtypes.h usability... no
+checking sys/bsdtypes.h presence... no
+checking for sys/bsdtypes.h... no
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking sys/param.h usability... no
+checking sys/param.h presence... no
+checking for sys/param.h... no
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking sys/select.h usability... no
+checking sys/select.h presence... no
+checking for sys/select.h... no
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking sys/timeb.h usability... yes
+checking sys/timeb.h presence... yes
+checking for sys/timeb.h... yes
+checking for unistd.h... (cached) yes
+checking utime.h usability... yes
+checking utime.h presence... yes
+checking for utime.h... yes
+checking whether stat file-mode macros are broken... no
+checking whether time.h and sys/time.h may both be included... yes
+checking for an ANSI C-conforming const... yes
+checking for uid_t in sys/types.h... yes
+checking for mode_t... yes
+checking for pid_t... yes
+checking for size_t... yes
+checking return type of signal handlers... void
+checking for struct stat.st_blksize... no
+checking for struct stat.st_rdev... yes
+checking for dup2... yes
+checking for ftruncate... yes
+checking for gethostname... yes
+checking for memmove... yes
+checking for mkdir... yes
+checking for rename... yes
+checking for strerror... yes
+checking for strstr... yes
+checking for strtoul... yes
+checking for valloc... no
+checking for waitpid... yes
+checking for stdint.h... (cached) no
+checking for SIZE_MAX... 4294967295U
+checking for inline... inline
+checking for stdint.h... (cached) no
+checking for fchdir... no
+checking for fchmod... no
+checking for fsync... yes
+checking for ftime... yes
+checking for geteuid... yes
+checking for getgroups... yes
+checking for getopt... yes
+checking for getpagesize... yes
+checking for gettimeofday... yes
+checking for initgroups... no
+checking for login... no
+checking for logout... no
+checking for mknod... no
+checking for mkstemp... yes
+checking for mktemp... yes
+checking for putenv... yes
+checking for readlink... yes
+checking for regcomp... no
+checking for regerror... no
+checking for regexec... no
+checking for regfree... no
+checking for sigaction... yes
+checking for sigblock... yes
+checking for sigprocmask... yes
+checking for sigsetmask... yes
+checking for sigvec... yes
+checking for tempnam... yes
+checking for timezone... no
+checking for tzset... yes
+checking for vprintf... yes
+checking for wait3... yes
+checking for nanosleep... yes
+checking for unistd.h... (cached) yes
+checking vfork.h usability... no
+checking vfork.h presence... no
+checking for vfork.h... no
+checking for fork... no
+checking for vfork... no
+checking whether closedir returns void... no
+checking for library containing getspnam... no
+checking whether utime accepts a null argument... yes
+checking for long file names... yes
+checking for working POSIX fnmatch... no
+checking for stdlib.h... (cached) yes
+checking for unistd.h... (cached) yes
+checking for getpagesize... (cached) yes
+checking for working mmap... yes
+checking for main in -lnsl... yes
+checking for library containing connect... none required
+checking for library containing gethostbyname... none required
+checking for KRB4 in /usr/kerberos... 
+checking for krb.h... 
+checking for krb_get_err_text... no
+checking for GSSAPI... 
+checking gssapi.h usability... no
+checking gssapi.h presence... no
+checking for gssapi.h... no
+checking gssapi/gssapi.h usability... no
+checking gssapi/gssapi.h presence... no
+checking for gssapi/gssapi.h... no
+checking krb5.h usability... no
+checking krb5.h presence... no
+checking for krb5.h... no
+checking for GSSAPI in /usr/kerberos... 
+checking gssapi.h usability... no
+checking gssapi.h presence... no
+checking for gssapi.h... no
+checking gssapi/gssapi.h usability... no
+checking gssapi/gssapi.h presence... no
+checking for gssapi/gssapi.h... no
+checking krb5.h usability... no
+checking krb5.h presence... no
+checking for krb5.h... no
+checking for GSSAPI in /usr/cygnus/kerbnet... 
+checking gssapi.h usability... no
+checking gssapi.h presence... no
+checking for gssapi.h... no
+checking gssapi/gssapi.h usability... no
+checking gssapi/gssapi.h presence... no
+checking for gssapi/gssapi.h... no
+checking krb5.h usability... no
+checking krb5.h presence... no
+checking for krb5.h... no
+checking for GSSAPI... no
+checking for vim... no
+checking for vi... vi
+checking for temporary directory... /tmp
+checking for a case sensitive file system... no
+checking for cygwin32... no
+configure: creating ./config.status
+config.status: creating contrib/check_cvs
+config.status: creating contrib/clmerge
+config.status: creating contrib/cln_hist
+config.status: creating contrib/commit_prep
+config.status: creating contrib/cvs_acls
+config.status: creating contrib/log
+config.status: creating contrib/log_accum
+config.status: creating contrib/mfpipe
+config.status: creating contrib/pvcs2rcs
+config.status: creating contrib/rcs2log
+config.status: creating contrib/rcslock
+config.status: creating contrib/sccs2rcs
+config.status: creating doc/mkman
+config.status: creating src/cvsbug
+config.status: creating windows-NT/fix-msvc-mak
+config.status: creating Makefile
+config.status: creating contrib/Makefile
+config.status: creating cvs.spec
+config.status: creating diff/Makefile
+config.status: creating doc/Makefile
+config.status: creating emx/Makefile
+config.status: creating lib/Makefile
+config.status: creating man/Makefile
+config.status: creating os2/Makefile
+config.status: creating src/Makefile
+config.status: creating tools/Makefile
+config.status: creating vms/Makefile
+config.status: creating windows-NT/Makefile
+config.status: creating windows-NT/SCC/Makefile
+config.status: creating zlib/Makefile
+config.status: creating config.h
+config.status: linking ./lib/fnmatch.h.in to lib/fnmatch.h
+config.status: executing depfiles commands
+bash$ <strong>exit</strong>
+$ <strong>lo</strong>
+.
+.
+.
+
+ Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2  
+
+Username: <strong>user15</strong>
+Password: 
+   Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+    Last interactive login on Saturday, 26-JUN-2004 09:57:29.02
+%DCL-I-SUPERSEDE, previous value of DCL$PATH has been superseded
+$ <strong>bash</strong>
+bash$ <strong>ls</strong>
+CVS-1_11_17_TAR  buildcvs15.log  cvs-1.11.17  cvsbuild15.log  login.com  temp
+bash$ <strong>cd cvs-1.11.17</strong>
+bash$ <strong>ls</strong>
+AUTHORS        Makefile.am   confdefs.h		 cvs.spec     man
+BUGS	       Makefile.in   config.h		 cvs.spec.in  mdate-sh
+COPYING        NEWS	     config.h.in	 cvsnt.dep    missing
+COPYING.LIB    PROJECTS      config.log		 cvsnt.dsp    mkinstalldirs
+ChangeLog      README	     config.status	 cvsnt.dsw    mktemp.sh
+ChangeLog.zoo  README.VMS    configure		 cvsnt.mak    os2
+DEVEL-CVS      TESTS	     configure.in	 depcomp      src
+FAQ	       TODO	     configure.org	 diff	      stamp-h1
+HACKING        acinclude.m4  confstat7945-21368  doc	      tools
+INSTALL        aclocal.m4    conftest.DSF	 emx	      vms
+MINOR-BUGS     build.com     contrib		 install-sh   windows-NT
+Makefile       compile	     cvs-format.el	 lib	      zlib
+</pre>
+	I followed the guidelines Martin Borgman described on the
+	www.oooovms.dyndns.org web-site. They can be found on the
+	following page:<br>
+<br>
+	http://www.oooovms.dyndns.org/gnv/cvs/<br>
+<br>
+	This page describes the build of an older cvs version client.
+<pre>
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user15/cvs-1.11.17'
+Making all in lib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/lib'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'argmatch.c' || ech
+o './'`argmatch.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'getdate.c' || echo
+ './'`getdate.c
+
+    if (Minutes < 0 || Minutes > 59 || Seconds < 0 || Seconds > 59)
+........^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "Minutes" is bein
+g compared with a relational operator to a constant whose value is not greater t
+han zero.  This might not be what you intended.
+at line number 585 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+    if (Minutes < 0 || Minutes > 59 || Seconds < 0 || Seconds > 59)
+.......................................^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "Seconds" is bein
+g compared with a relational operator to a constant whose value is not greater t
+han zero.  This might not be what you intended.
+at line number 585 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+	if (Hours < 0 || Hours > 23)
+............^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "Hours" is being 
+compared with a relational operator to a constant whose value is not greater tha
+n zero.  This might not be what you intended.
+at line number 589 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+    if (Year < 0)
+........^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "Year" is being c
+ompared with a relational operator to a constant whose value is not greater than
+ zero.  This might not be what you intended.
+at line number 633 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+    if ((tod = ToSeconds(Hours, Minutes, Seconds, Meridian)) < 0)
+........^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "(tod=ToSeconds(.
+..))" is being compared with a relational operator to a constant whose value is 
+not greater than zero.  This might not be what you intended.
+at line number 661 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+    now += 7 * SECSPERDAY * (DayOrdinal <= 0 ? DayOrdinal : DayOrdinal - 1);
+.............................^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "DayOrdinal" is b
+eing compared with a relational operator to a constant whose value is not greate
+r than zero.  This might not be what you intended.
+at line number 697 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+	if (Start < 0)
+............^
+%CC-I-QUESTCOMPARE, In this statement, the unsigned expression "Start" is being 
+compared with a relational operator to a constant whose value is not greater tha
+n zero.  This might not be what you intended.
+at line number 981 in file /u/scjones/cvs-nightly/lib/getdate.y
+
+    return Start == -1 ? 0 : Start;
+...........^
+%CC-I-QUESTCOMPARE1, In this statement, the unsigned expression "Start" is being
+ compared with an equality operator to a constant whose value is negative.  This
+ might not be what you intended.
+at line number 1000 in file /u/scjones/cvs-nightly/lib/getdate.y
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'getline.c' || echo
+ './'`getline.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'getopt.c' || echo 
+'./'`getopt.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'getopt1.c' || echo
+ './'`getopt1.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'getpass.c' || echo
+ './'`getpass.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'md5.c' || echo './
+'`md5.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'regex.c' || echo '
+./'`regex.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'savecwd.c' || echo
+ './'`savecwd.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'sighandle.c' || ec
+ho './'`sighandle.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'stripslash.c' || e
+cho './'`stripslash.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'xgetwd.c' || echo 
+'./'`xgetwd.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'yesno.c' || echo '
+./'`yesno.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'valloc.c' || echo 
+'./'`valloc.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'fnmatch.c' || echo
+ './'`fnmatch.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../src     -g -c `test -f 'fncase.c' || echo 
+'./'`fncase.c
+rm -f libcvs.a
+ar cru libcvs.a argmatch.o getdate.o getline.o getopt.o getopt1.o getpass.o md5.
+o regex.o savecwd.o sighandle.o stripslash.o xgetwd.o yesno.o valloc.o fnmatch.o
+ fncase.o
+: libcvs.a
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/lib'
+Making all in zlib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/zlib'
+gcc -g   -c -o adler32.o adler32.c
+gcc -g   -c -o compress.o compress.c
+gcc -g   -c -o crc32.o crc32.c
+gcc -g   -c -o gzio.o gzio.c
+gcc -g   -c -o uncompr.o uncompr.c
+gcc -g   -c -o deflate.o deflate.c
+gcc -g   -c -o trees.o trees.c
+gcc -g   -c -o zutil.o zutil.c
+gcc -g   -c -o inflate.o inflate.c
+gcc -g   -c -o infblock.o infblock.c
+gcc -g   -c -o inftrees.o inftrees.c
+gcc -g   -c -o infcodes.o infcodes.c
+gcc -g   -c -o infutil.o infutil.c
+gcc -g   -c -o inffast.o inffast.c
+ar rc libz.a adler32.o compress.o crc32.o gzio.o uncompr.o deflate.o trees.o zut
+il.o inflate.o infblock.o inftrees.o infcodes.o infutil.o inffast.o 
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/zlib'
+Making all in diff
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/diff'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'diff.c' || echo './
+'`diff.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'diff3.c' || echo '.
+/'`diff3.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'analyze.c' || echo 
+'./'`analyze.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'cmpbuf.c' || echo '
+./'`cmpbuf.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'io.c' || echo './'`
+io.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'context.c' || echo 
+'./'`context.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'ed.c' || echo './'`
+ed.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'normal.c' || echo '
+./'`normal.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'ifdef.c' || echo '.
+/'`ifdef.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'util.c' || echo './
+'`util.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'dir.c' || echo './'
+`dir.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'version.c' || echo 
+'./'`version.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib    -g -c `test -f 'side.c' || echo './
+'`side.c
+rm -f libdiff.a
+ar cru libdiff.a diff.o diff3.o analyze.o cmpbuf.o io.o context.o ed.o normal.o 
+ifdef.o util.o dir.o version.o side.o 
+: libdiff.a
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/diff'
+Making all in src
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'add.c' || echo './'`add.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'admin.c' || echo './'`admin.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'annotate.c' || echo './'`annotate.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'buffer.c' || echo './'`buffer.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'checkin.c' || echo './'`checkin.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'checkout.c' || echo './'`checkout.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'classify.c' || echo './'`classify.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'client.c' || echo './'`client.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'commit.c' || echo './'`commit.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'create_adm.c' || echo './'`create_adm.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'cvsrc.c' || echo './'`cvsrc.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'diff.c' || echo './'`diff.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'edit.c' || echo './'`edit.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'entries.c' || echo './'`entries.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'error.c' || echo './'`error.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'expand_path.c' || echo './'`expand_path.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'fileattr.c' || echo './'`fileattr.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'filesubr.c' || echo './'`filesubr.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'find_names.c' || echo './'`find_names.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'hardlink.c' || echo './'`hardlink.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'hash.c' || echo './'`hash.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'history.c' || echo './'`history.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'ignore.c' || echo './'`ignore.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'import.c' || echo './'`import.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'lock.c' || echo './'`lock.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'log.c' || echo './'`log.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'login.c' || echo './'`login.c
+
+#include "getpass.h"
+.^
+%CC-F-NOINCLFILEF, Cannot find file "getpass.h" specified in #include directive.
+at line number 12 in file USERS:[user15.cvs-1^.11^.17.src]login.c;2
+</pre>
+It turns out that we don't need the getpass.h any more...
+<pre>
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'logmsg.c' || echo './'`logmsg.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'main.c' || echo './'`main.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'mkmodules.c' || echo './'`mkmodules.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'modules.c' || echo './'`modules.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'myndbm.c' || echo './'`myndbm.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'no_diff.c' || echo './'`no_diff.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'parseinfo.c' || echo './'`parseinfo.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'patch.c' || echo './'`patch.c
+
+	if ((t.actime = t.modtime = RCS_getrevtime (rcsfile, vers_tag,
+............^
+%CC-I-QUESTCOMPARE1, In this statement, the unsigned expression "(t.actime=t.mod
+time=RCS_getrevtime(...))" is being compared with an equality operator to a cons
+tant whose value is negative.  This might not be what you intended.
+at line number 551 in file USERS:[user15.cvs-1^.11^.17.src]patch.c;1
+
+	if ((t.actime = t.modtime = RCS_getrevtime (rcsfile, vers_head,
+............^
+%CC-I-QUESTCOMPARE1, In this statement, the unsigned expression "(t.actime=t.mod
+time=RCS_getrevtime(...))" is being compared with an equality operator to a cons
+tant whose value is negative.  This might not be what you intended.
+at line number 574 in file USERS:[user15.cvs-1^.11^.17.src]patch.c;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'rcs.c' || echo './'`rcs.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'rcscmds.c' || echo './'`rcscmds.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'recurse.c' || echo './'`recurse.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'release.c' || echo './'`release.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'remove.c' || echo './'`remove.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'repos.c' || echo './'`repos.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'root.c' || echo './'`root.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'run.c' || echo './'`run.c
+
+    pid = fork ();
+..........^
+%CC-I-IMPLICITFUNC, In this statement, the identifier "fork" is implicitly decla
+red as a function.
+at line number 190 in file USERS:[user15.cvs-1^.11^.17.src]run.c;1
+</pre>
+	Fork?? didn't we explicitly disable that???
+<pre>
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'scramble.c' || echo './'`scramble.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'server.c' || echo './'`server.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'stack.c' || echo './'`stack.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'status.c' || echo './'`status.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'subr.c' || echo './'`subr.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'tag.c' || echo './'`tag.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'update.c' || echo './'`update.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'version.c' || echo './'`version.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'vers_ts.c' || echo './'`vers_ts.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'watch.c' || echo './'`watch.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'wrapper.c' || echo './'`wrapper.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'zlib.c' || echo './'`zlib.c
+gcc  -g   -o cvs  add.o admin.o annotate.o buffer.o checkin.o checkout.o classif
+y.o client.o commit.o create_adm.o cvsrc.o diff.o edit.o entries.o error.o expan
+d_path.o fileattr.o filesubr.o find_names.o hardlink.o hash.o history.o ignore.o
+ import.o lock.o log.o login.o logmsg.o main.o mkmodules.o modules.o myndbm.o no
+_diff.o parseinfo.o patch.o rcs.o rcscmds.o recurse.o release.o remove.o repos.o
+ root.o run.o scramble.o server.o stack.o status.o subr.o tag.o update.o version
+.o vers_ts.o watch.o wrapper.o zlib.o ../diff/libdiff.a ../lib/libcvs.a ../zlib/
+libz.a -lnsl 
+? cc: Warning: library "nsl" not found
+%LINK-F-OPENIN, error opening USERS:[user15.cvs-1^.11^.17.src]LOGIN.O; as input
+-RMS-E-FNF, file not found
+%DCL-W-SKPDAT, image data (records not beginning with "$") ignored
+make[2]: *** [cvs] Error 2
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/USERS/user15/cvs-1.11.17'
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user15/cvs-1.11.17'
+Making all in lib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/lib'
+Making all in zlib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/zlib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/zlib'
+Making all in diff
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/diff'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/diff'
+Making all in src
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'login.c' || echo './'`login.c
+
+	tmp = getpass ("CVS password: ");
+..............^
+%CC-I-IMPLICITFUNC, In this statement, the identifier "cvs_getpass" is implicitl
+y declared as a function.
+at line number 541 in file USERS:[user15.cvs-1^.11^.17.src]login.c;3
+
+	tmp = getpass ("CVS password: ");
+........^
+%CC-W-CVTDIFTYPES, In this statement, "cvs_getpass(...)" of type "int", is being
+ converted to "pointer to char".
+at line number 541 in file USERS:[user15.cvs-1^.11^.17.src]login.c;3
+gcc  -g   -o cvs  add.o admin.o annotate.o buffer.o checkin.o checkout.o classif
+y.o client.o commit.o create_adm.o cvsrc.o diff.o edit.o entries.o error.o expan
+d_path.o fileattr.o filesubr.o find_names.o hardlink.o hash.o history.o ignore.o
+ import.o lock.o log.o login.o logmsg.o main.o mkmodules.o modules.o myndbm.o no
+_diff.o parseinfo.o patch.o rcs.o rcscmds.o recurse.o release.o remove.o repos.o
+ root.o run.o scramble.o server.o stack.o status.o subr.o tag.o update.o version
+.o vers_ts.o watch.o wrapper.o zlib.o ../diff/libdiff.a ../lib/libcvs.a ../zlib/
+libz.a -lnsl 
+? cc: Warning: library "nsl" not found
+%LINK-W-WRNERS, compilation warnings
+	in module LOGIN file USERS:[user15.cvs-1^.11^.17.src]login.o;1
+%LINK-E-NUDFSYMS, 1 undefined symbol:
+%LINK-I-UDFSYM, 	FORK 
+%LINK-W-USEUNDEF, undefined symbol FORK referenced
+	in psect $LINK$ offset %X00000150
+	in module RUN file USERS:[user15.cvs-1^.11^.17.src]run.o;1
+make[2]: *** [cvs] Error 2
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/USERS/user15/cvs-1.11.17'
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user15/cvs-1.11.17'
+Making all in lib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/lib'
+Making all in zlib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/zlib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/zlib'
+Making all in diff
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/diff'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/diff'
+Making all in src
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'run.c' || echo './'`run.c
+
+    pid = fork ();
+..........^
+%CC-I-IMPLICITFUNC, In this statement, the identifier "fork" is implicitly decla
+red as a function.
+at line number 190 in file USERS:[user15.cvs-1^.11^.17.src]run.c;2
+gcc  -g   -o cvs  add.o admin.o annotate.o buffer.o checkin.o checkout.o classif
+y.o client.o commit.o create_adm.o cvsrc.o diff.o edit.o entries.o error.o expan
+d_path.o fileattr.o filesubr.o find_names.o hardlink.o hash.o history.o ignore.o
+ import.o lock.o log.o login.o logmsg.o main.o mkmodules.o modules.o myndbm.o no
+_diff.o parseinfo.o patch.o rcs.o rcscmds.o recurse.o release.o remove.o repos.o
+ root.o run.o scramble.o server.o stack.o status.o subr.o tag.o update.o version
+.o vers_ts.o watch.o wrapper.o zlib.o ../diff/libdiff.a ../lib/libcvs.a ../zlib/
+libz.a -lnsl 
+? cc: Warning: library "nsl" not found
+%LINK-W-WRNERS, compilation warnings
+	in module LOGIN file USERS:[user15.cvs-1^.11^.17.src]login.o;1
+%LINK-E-NUDFSYMS, 1 undefined symbol:
+%LINK-I-UDFSYM, 	FORK 
+%LINK-W-USEUNDEF, undefined symbol FORK referenced
+	in psect $LINK$ offset %X00000150
+	in module RUN file USERS:[user15.cvs-1^.11^.17.src]run.o;2
+make[2]: *** [cvs] Error 2
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/src'
+make[1]: *** [all-recursive] Error 1
+make[1]: Leaving directory `/USERS/user15/cvs-1.11.17'
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user15/cvs-1.11.17'
+Making all in lib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/lib'
+Making all in zlib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/zlib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/zlib'
+Making all in diff
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/diff'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/diff'
+Making all in src
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'run.c' || echo './'`run.c
+gcc  -g   -o cvs  add.o admin.o annotate.o buffer.o checkin.o checkout.o classif
+y.o client.o commit.o create_adm.o cvsrc.o diff.o edit.o entries.o error.o expan
+d_path.o fileattr.o filesubr.o find_names.o hardlink.o hash.o history.o ignore.o
+ import.o lock.o log.o login.o logmsg.o main.o mkmodules.o modules.o myndbm.o no
+_diff.o parseinfo.o patch.o rcs.o rcscmds.o recurse.o release.o remove.o repos.o
+ root.o run.o scramble.o server.o stack.o status.o subr.o tag.o update.o version
+.o vers_ts.o watch.o wrapper.o zlib.o ../diff/libdiff.a ../lib/libcvs.a ../zlib/
+libz.a -lnsl 
+? cc: Warning: library "nsl" not found
+%LINK-W-WRNERS, compilation warnings
+	in module LOGIN file USERS:[user15.cvs-1^.11^.17.src]login.o;1
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/src'
+Making all in man
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/man'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/man'
+Making all in doc
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/doc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/doc'
+Making all in contrib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/contrib'
+rm -f cvs2vendor
+cp cvs2vendor.sh cvs2vendor
+chmod +x cvs2vendor
+rm -f cvscheck
+cp cvscheck.sh cvscheck
+chmod +x cvscheck
+rm -f debug_check_log
+cp debug_check_log.sh debug_check_log
+chmod +x debug_check_log
+rm -f rcs-to-cvs
+cp rcs-to-cvs.sh rcs-to-cvs
+chmod +x rcs-to-cvs
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/contrib'
+Making all in tools
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/tools'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/tools'
+Making all in windows-NT
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT'
+Making all in SCC
+make[3]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT/SCC'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT/SCC'
+make[3]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT'
+sed "s/%PACKAGE_VERSION%/1.11.17/" <./config.h.in \
+  >>config.tmp
+make[3]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT'
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT'
+Making all in os2
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/os2'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/os2'
+Making all in emx
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/emx'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/emx'
+Making all in vms
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/vms'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/vms'
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17'
+make[1]: Leaving directory `/USERS/user15/cvs-1.11.17'
+bash$ <strong>make</strong>
+make  all-recursive
+make[1]: Entering directory `/USERS/user15/cvs-1.11.17'
+Making all in lib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/lib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/lib'
+Making all in zlib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/zlib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/zlib'
+Making all in diff
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/diff'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/diff'
+Making all in src
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/src'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I../lib -I../diff -I../zlib     -g -c `test -f
+ 'vms_crtl_init.c' || echo './'`vms_crtl_init.c
+gcc  -g   -o cvs  add.o admin.o annotate.o buffer.o checkin.o checkout.o classif
+y.o client.o commit.o create_adm.o cvsrc.o diff.o edit.o entries.o error.o expan
+d_path.o fileattr.o filesubr.o find_names.o hardlink.o hash.o history.o ignore.o
+ import.o lock.o log.o login.o logmsg.o main.o mkmodules.o modules.o myndbm.o no
+_diff.o parseinfo.o patch.o rcs.o rcscmds.o recurse.o release.o remove.o repos.o
+ root.o run.o scramble.o server.o stack.o status.o subr.o tag.o update.o version
+.o vers_ts.o watch.o wrapper.o zlib.o vms_crtl_init.o ../diff/libdiff.a ../lib/l
+ibcvs.a ../zlib/libz.a -lnsl 
+? cc: Warning: library "nsl" not found
+%LINK-W-WRNERS, compilation warnings
+	in module LOGIN file USERS:[user15.cvs-1^.11^.17.src]login.o;1
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/src'
+Making all in man
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/man'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/man'
+Making all in doc
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/doc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/doc'
+Making all in contrib
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/contrib'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/contrib'
+Making all in tools
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/tools'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/tools'
+Making all in windows-NT
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT'
+Making all in SCC
+make[3]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT/SCC'
+make[3]: Nothing to be done for `all'.
+make[3]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT/SCC'
+make[3]: Entering directory `/USERS/user15/cvs-1.11.17/windows-NT'
+make[3]: Nothing to be done for `all-am'.
+make[3]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT'
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/windows-NT'
+Making all in os2
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/os2'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/os2'
+Making all in emx
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/emx'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/emx'
+Making all in vms
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17/vms'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17/vms'
+make[2]: Entering directory `/USERS/user15/cvs-1.11.17'
+make[2]: Nothing to be done for `all-am'.
+make[2]: Leaving directory `/USERS/user15/cvs-1.11.17'
+make[1]: Leaving directory `/USERS/user15/cvs-1.11.17'
+bash$ 
+.
+.
+.
+.
+
+ Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2  
+
+Username: <strong>user15</strong>
+Password: 
+   Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+    Last interactive login on Sunday, 27-JUN-2004 00:49:15.83
+%DCL-I-SUPERSEDE, previous value of DCL$PATH has been superseded
+$ <strong>bash</strong>
+bash$ <strong>ls</strong>
+CVS-1_11_17_TAR  cvs-1.11.17	 login.com  testvcs.log
+buildcvs15.log	 cvsbuild15.log  temp
+bash$ <strong>cd cvs-1.11.17/</strong>
+bash$ <strong>ls</strong>
+
+AUTHORS        Makefile.am   confdefs.h		 cvs.spec     man
+BUGS	       Makefile.in   config.h		 cvs.spec.in  mdate-sh
+COPYING        NEWS	     config.h.in	 cvsnt.dep    missing
+COPYING.LIB    PROJECTS      config.log		 cvsnt.dsp    mkinstalldirs
+ChangeLog      README	     config.status	 cvsnt.dsw    mktemp.sh
+ChangeLog.zoo  README.VMS    configure		 cvsnt.mak    os2
+DEVEL-CVS      TESTS	     configure.in	 depcomp      src
+FAQ	       TODO	     configure.org	 diff	      stamp-h1
+HACKING        acinclude.m4  confstat7945-21368  doc	      tools
+INSTALL        aclocal.m4    conftest.DSF	 emx	      vms
+MINOR-BUGS     build.com     contrib		 install-sh   windows-NT
+Makefile       compile	     cvs-format.el	 lib	      zlib
+bash$ <strong>cd src</strong>
+bash$ <strong>ls</strong>
+ChangeLog	commit.o       hardlink.c   myndbm.o	 server.h
+ChangeLog-9194	create_adm.c   hardlink.h   no_diff.c	 server.o
+ChangeLog-9395	create_adm.o   hardlink.o   no_diff.o	 stack.c
+ChangeLog-96	cvs	       hash.c	    parseinfo.c  stack.h
+ChangeLog-97	cvs.DSF        hash.h	    parseinfo.o  stack.o
+Makefile	cvs.h	       hash.o	    patch.c	 status.c
+Makefile.am	cvsbug	       history.c    patch.o	 status.o
+Makefile.in	cvsbug.in      history.h    rcs.c	 subr.c
+add.c		cvsrc.c        history.o    rcs.h	 subr.o
+add.o		cvsrc.o        ignore.c     rcs.o	 tag.c
+admin.c		diff.c	       ignore.o     rcscmds.c	 tag.o
+admin.o		diff.o	       import.c     rcscmds.o	 update.c
+annotate.c	edit.c	       import.o     recurse.c	 update.h
+annotate.o	edit.h	       lock.c	    recurse.o	 update.o
+buffer.c	edit.o	       lock.o	    release.c	 vers_ts.c
+buffer.h	entries.c      log.c	    release.o	 vers_ts.o
+buffer.o	entries.o      log.o	    remove.c	 version.c
+build_src.com	error.c        login.c	    remove.o	 version.o
+check.log	error.h        login.o	    repos.c	 vms_crtl_init.c
+checkin.c	error.o        logmsg.c     repos.o	 vms_crtl_init.o
+checkin.o	expand_path.c  logmsg.o     root.c	 watch.c
+checkout.c	expand_path.o  main.c	    root.h	 watch.h
+checkout.o	fileattr.c     main.o	    root.o	 watch.o
+classify.c	fileattr.h     mkmodules.c  run.c	 wrapper.c
+classify.o	fileattr.o     mkmodules.o  run.o	 wrapper.o
+client.c	filesubr.c     modules.c    sanity.sh	 zlib.c
+client.h	filesubr.o     modules.o    scramble.c	 zlib.o
+client.o	find_names.c   myndbm.c     scramble.o
+commit.c	find_names.o   myndbm.h     server.c
+bash$ <strong>cvs --version</strong>
+
+Concurrent Versions System (CVS) 1.11.17 (client)
+
+Copyright (c) 1989-2004 Brian Berliner, david d `zoo' zuhn, 
+                        Jeff Polk, and other authors
+
+CVS may be copied only under the terms of the GNU General Public License,
+a copy of which can be found with the CVS distribution kit.
+
+Specify the --help option for further information about CVS
+bash$ <strong>cvs --help</strong>
+Usage: cvs [cvs-options] command [command-options-and-arguments]
+  where cvs-options are -q, -n, etc.
+    (specify --help-options for a list of options)
+  where command is add, admin, etc.
+    (specify --help-commands for a list of commands
+     or --help-synonyms for a list of command synonyms)
+  where command-options-and-arguments depend on the specific command
+    (specify -H followed by a command name for command-specific help)
+  Specify --help to receive this message
+
+The Concurrent Versions System (CVS) is a tool for version control.
+For CVS updates and additional information, see
+    the CVS home page at http://www.cvshome.org/ or
+    Pascal Molli's CVS site at http://www.loria.fr/~molli/cvs-index.html
+bash$ <strong>cvs -d:pserver:anonymous@cvs.sourceforge.net:/cvsroot/gnv login</strong>
+Logging in to :pserver:anonymous@cvs.sourceforge.net:2401/cvsroot/gnv
+CVS password: 
+
+cvs [login aborted]: cannot fdopen 6 for write: invalid argument
+bash$ <strong>exit</strong>
+$ <strong>lo</strong>
+  USER15       logged out at 28-JUN-2004 23:23:01.09
+</pre>
+The fdopen error looks a lot like an error Martin encountered when porting bzip2 1.0.2. When I asked for his help he responded:<br>
+<br>
+"Before the fdopen() could be a open(). If the file must be opened for binairy output "wb" or "w+b", then the open statement must have the "ctx=bin" option."<br>
+<br>
+So now I'm looking for such a situation in the src/client.c.
+        </p>
+      </div>
+
+    </div><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Maintained by the OpenOffice on OpenVMS porting Project.</p>
+      </div>
+    </footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>

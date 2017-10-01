@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="google-site-verification" content="eUIv4Ec1vFO2oe6ZvW3kau7gblSqEyEnBHULZYvro8U">
+    <title>OpenSource on OpenVMS porting project</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap theme -->
+    <link href="css/bootstrap-theme.min.css" rel="stylesheet">
+
+    <link href="css/4ovms.css" rel="stylesheet">
+  </head>
+
+  <body role="document">
+
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../">4ovms</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" role="main">
+
+      <div class="row">
+
+        <h1>Description of the rebuild of bash (version 1.11) on OpenVMS Alpha.</h1>
+          <p>First you have to make certain that your VMS-system has GNV version 1.5-6 loaded.</p>
+<pre>
+$ product show hist
+----------------------------------- ----------- ----------- --------------------
+PRODUCT                             KIT TYPE    OPERATION   DATE AND TIME
+----------------------------------- ----------- ----------- --------------------
+..snip..
+CPQ AXPVMS BLISSALPHAN V1.11-0      Full LP     Install     02-MAR-2004 16:00:40
+..snip..
+DEC AXPVMS OPENVMS V7.3-2           Platform    Install     11-DEC-2003 17:53:13
+..snip..
+DEC AXPVMS VMS V7.3-2               Oper System Install     11-DEC-2003 17:53:13
+..snip..
+DEC AXPVMS GNV V1.5-6               Full LP     Install     09-DEC-2003 21:16:25
+..snip..
+----------------------------------- ----------- ----------- --------------------
+
+89 items found
+$
+$ bash --version
+GNU BASH, version 1.14.8(0) s4
+bash$ exit
+exit
+$
+$ cc /version
+Compaq C V6.5-001 on OpenVMS Alpha V7.3-2
+$
+</pre>
+          <p>If you don't have GNV 1.5-6 installed see <a href="http://gnv.sourceforge.net/readme.html">this page</a> for installation instructions.<br>
+             To start with the (re)build of (a piece) of GNV read <a href="http://gnv.sourceforge.net/building.html">this page</a>.<br>
+             Please note the requirements mentioned in the documentation!<br>
+             In addition to the requirements mentioned you need to install BLISS if you want to build the whole kit. You can find the BLISS compiler on the freeware CD 6.0.<br>
+             After you have a working build environment, you can fetch the modified sourcefile from <a href="http://cvs.sourceforge.net/viewcvs.py/gnv/bash/execute_cmd.c">http://cvs.sourceforge.net/viewcvs.py/gnv/bash/execute_cmd.c</a>.<br>
+             The source is hidden under the download button next to the "Revision 1.11"<br>
+             After you have copied this file to the bash directory where you found the "old" version of this file, you can start a rebuild of GNV.<br>
+             You can build the entire GNV kit as follows:</p>
+<pre>
+Copy BUILD.COM from [.BUILD] to the main directory.  In fact, it will do this itself, when invoked as:
+
+@[.BUILD]BUILD.COM ALL
+
+Then you can build the entire GNV kit as:
+
+@BUILD ALL BILL
+
+This will build the entire GNV kit:  all components.  It will also install the
+executable images into [.BIN].
+
+Its best to start by building the entire package.  Once you've build the entire
+GNV kit, you can rebuild individual components as follows:
+
+$ @BUILD BASH BUILD
+$ @BUILD BASH INSTALL
+
+This builds the BASH component, and installs it into [.BIN] as a separate step.
+</pre>
+          <p>After a test of the bash image, you can copy the bash.exe to the GNU:[bin] directory as bash.exe and sh.exe and enter an alias as bash. and sh. as follows:</p>
+<pre>
+$ copy bash.exe GNU:[bin]
+$ copy bash.exe GNU:[bin]sh.exe
+$ set default GNU:[bin]
+$ set file/enter=bash. bash.exe
+$ set file/enter=sh. sh.exe
+$ dir/file sh,bash
+
+Directory GNU:[bin]
+
+sh.;4                (27758,1,0)
+sh.;3                (24672,2,0)
+SH.EXE;2             (27758,1,0)
+SH.EXE;1             (24672,2,0)
+bash.;4              (27376,19,0)
+bash.;3              (24605,32,0)
+BASH.EXE;2           (27376,19,0)
+BASH.EXE;1           (24605,32,0)
+
+Total of 8 files.
+$
+</pre>
+        <p>Now you have a new version of bash!</p>
+      </div>
+
+    </div><!-- /.container -->
+
+    <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Maintained by the OpenOffice on OpenVMS porting Project.</p>
+      </div>
+    </footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+  </body>
+</html>
+

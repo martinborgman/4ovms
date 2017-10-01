@@ -1,0 +1,425 @@
+$ dir
+
+Directory USERS:[user4]
+
+.bashrc;1           10_0_0_150_0.LOG;1  BC-1_06_TAR.GZ;1    dt.DIR;1
+login.com;1         temp.DIR;1
+
+Total of 6 files.
+$ bash
+bash$ ls -l
+total 274
+-rwxr-x---   1 USER4    159           468 May 28 21:44 10_0_0_150_0.LOG
+-rwxr-x---   1 USER4    159        278926 May 28 21:43 BC-1_06_TAR.GZ
+drwxr-xr-x   1 USER4    159           512 May 28 21:45 dt
+-rwxr-x---   1 USER4    159           390 May 24 20:20 login.com
+drwxr-x--x   1 USER4    159           512 May 24 20:20 temp
+bash$ gunzip BC-1_06_TAR.GZ
+bash$ ls -l
+total 1072
+-rwxr-x---   1 USER4    159           468 May 28 21:44 10_0_0_150_0.LOG
+-rwxr-x---   1 USER4    159       1095680 May 28 21:43 BC-1_06_TAR
+drwxr-xr-x   1 USER4    159           512 May 28 21:45 dt
+-rwxr-x---   1 USER4    159           390 May 24 20:20 login.com
+drwxr-x--x   1 USER4    159           512 May 24 20:20 temp
+bash$ pax -rvf BC-1_06_TAR
+USTAR format archive assumed
+bc-1.06/Makefile.in
+bc-1.06/README
+bc-1.06/stamp-h.in
+bc-1.06/AUTHORS
+bc-1.06/COPYING
+bc-1.06/COPYING.LIB
+bc-1.06/ChangeLog
+bc-1.06/INSTALL
+bc-1.06/Makefile.am
+bc-1.06/NEWS
+bc-1.06/acconfig.h
+bc-1.06/aclocal.m4
+bc-1.06/config.h.in
+bc-1.06/configure
+bc-1.06/configure.in
+bc-1.06/install-sh
+bc-1.06/missing
+bc-1.06/mkinstalldirs
+bc-1.06/lib/Makefile.in
+bc-1.06/lib/Makefile.am
+bc-1.06/lib/getopt.c
+bc-1.06/lib/getopt1.c
+bc-1.06/lib/vfprintf.c
+bc-1.06/lib/number.c
+bc-1.06/lib/testmul.c
+bc-1.06/bc/Makefile.in
+bc-1.06/bc/Makefile.am
+bc-1.06/bc/bc.c
+bc-1.06/bc/scan.c
+bc-1.06/bc/main.c
+bc-1.06/bc/bc.y
+bc-1.06/bc/scan.l
+bc-1.06/bc/execute.c
+bc-1.06/bc/load.c
+bc-1.06/bc/storage.c
+bc-1.06/bc/util.c
+bc-1.06/bc/global.c
+bc-1.06/bc/libmath.h
+bc-1.06/bc/bc.h
+bc-1.06/bc/bcdefs.h
+bc-1.06/bc/const.h
+bc-1.06/bc/fix-libmath_h
+bc-1.06/bc/global.h
+bc-1.06/bc/libmath.b
+bc-1.06/bc/proto.h
+bc-1.06/bc/sbc.y
+bc-1.06/dc/Makefile.in
+bc-1.06/dc/Makefile.am
+bc-1.06/dc/dc.c
+bc-1.06/dc/misc.c
+bc-1.06/dc/eval.c
+bc-1.06/dc/stack.c
+bc-1.06/dc/array.c
+bc-1.06/dc/numeric.c
+bc-1.06/dc/string.c
+bc-1.06/dc/dc.h
+bc-1.06/dc/dc-proto.h
+bc-1.06/dc/dc-regdef.h
+bc-1.06/doc/Makefile.in
+bc-1.06/doc/Makefile.am
+bc-1.06/doc/texinfo.tex
+bc-1.06/doc/bc.texi
+bc-1.06/doc/dc.texi
+bc-1.06/doc/bc.1
+bc-1.06/doc/dc.1
+bc-1.06/doc/bc.info
+bc-1.06/doc/dc.info
+bc-1.06/h/getopt.h
+bc-1.06/h/number.h
+bc-1.06/Examples/ckbook.b
+bc-1.06/Examples/pi.b
+bc-1.06/Examples/primes.b
+bc-1.06/Examples/twins.b
+bc-1.06/Test/array.b
+bc-1.06/Test/arrayp.b
+bc-1.06/Test/aryprm.b
+bc-1.06/Test/atan.b
+bc-1.06/Test/checklib.b
+bc-1.06/Test/div.b
+bc-1.06/Test/exp.b
+bc-1.06/Test/fact.b
+bc-1.06/Test/jn.b
+bc-1.06/Test/ln.b
+bc-1.06/Test/mul.b
+bc-1.06/Test/raise.b
+bc-1.06/Test/sine.b
+bc-1.06/Test/sqrt.b
+bc-1.06/Test/sqrt1.b
+bc-1.06/Test/sqrt2.b
+bc-1.06/Test/testfn.b
+bc-1.06/Test/BUG.bc
+bc-1.06/Test/signum
+bc-1.06/Test/timetest
+bc-1.06/FAQ
+bash$ ls
+10_0_0_150_0.LOG  BC-1_06_TAR  bc-1.06  dt  login.com  temp
+bash$ cd bc-1.06
+bash$ ls
+AUTHORS      FAQ          README      config.h.in   h              stamp-h.in
+COPYING      INSTALL      Test        configure     install-sh
+COPYING.LIB  Makefile.am  acconfig.h  configure.in  lib
+ChangeLog    Makefile.in  aclocal.m4  dc            missing
+Examples     NEWS         bc          doc           mkinstalldirs
+bash$ ./configure --build=alpha-hp-vms
+creating cache ./config.cache
+checking for a BSD compatible install... /gnu/bin/install -c
+checking whether build environment is sane... yes
+checking whether make sets ${MAKE}... yes
+checking for working aclocal... missing
+checking for working autoconf... found
+checking for working automake... missing
+checking for working autoheader...
+missing-W-NOSUCHFILE, no such file
+checking for working makeinfo... missing
+checking for gcc... gcc
+checking whether the C compiler (gcc  ) works... yes
+checking whether the C compiler (gcc  ) is a cross-compiler... no
+checking whether we are using GNU C... no
+checking whether gcc accepts -g... yes
+checking how to run the C preprocessor... gcc -E
+checking for minix/config.h... no
+checking for flex... flex
+checking for flex... (cached) flex
+checking for yywrap in -lfl... no
+checking lex output file root...
+STAR::_FTA44: 21:55:50 BASH      CPU=00:00:00.70 PF=1028 IO=1645 MEM=292
+STAR::USER4_118 21:55:50 SH        CPU=00:00:03.15 PF=441 IO=8674 MEM=304
+STAR::USER4_64 21:55:50 flex      CPU=00:00:00.07 PF=232 IO=144 MEM=185
+STAR::USER4_118 21:56:30 SH        CPU=00:00:03.15 PF=441 IO=8675 MEM=304
+STAR::USER4_64 21:56:30 flex      CPU=00:00:00.07 PF=232 IO=145 MEM=185
+lex.yy_FTA44: 21:56:30 BASH      CPU=00:00:00.71 PF=1028 IO=1646 MEM=292
+checking whether yytext is a pointer... no
+checking for bison... bison -y
+checking for a BSD compatible install... /gnu/bin/install -c
+checking for ranlib... :
+checking whether make sets ${MAKE}... (cached) yes
+checking for stdarg.h... yes
+checking for stddef.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for limits.h... yes
+checking for unistd.h... yes
+checking for lib.h... no
+checking for working const... yes
+checking for ANSI C header files... yes
+checking for size_t... yes
+checking for ptrdiff_t... yes
+checking for vprintf... yes
+checking for isgraph... yes
+checking for setvbuf... yes
+updating cache ./config.cache
+creating ./config.status
+creating Makefile
+creating bc/Makefile
+creating dc/Makefile
+creating doc/Makefile
+creating lib/Makefile
+creating config.h
+bash$ # edited bc/Makefile, dc/Makefile, lib/Makefile, lib/getopt.c,
+lib/number.c and config.h
+bash$ make all
+make  all-recursive
+make[1]: Entering directory `/USERS/user4/bc-1.06'
+Making all in lib
+make[2]: Entering directory `/USERS/user4/bc-1.06/lib'
+Makefile:132: warning: overriding commands for target `.s.o'
+Makefile:129: warning: ignoring old commands for target `.s.o'
+gcc -DHAVE_CONFIG_H  -I. -I.. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR -c
+getopt.c
+gcc -DHAVE_CONFIG_H  -I. -I.. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR -c
+getopt1.c
+gcc -DHAVE_CONFIG_H  -I. -I.. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR -c
+vfprintf.c
+
+#endif /* !HAVE_VFPRINTF */
+...........................^
+%CC-W-EMPTYFILE, Source file does not contain any declarations.
+at line number 31 in file USERS:[user4.bc-1^.06.lib]vfprintf.c;1
+gcc -DHAVE_CONFIG_H  -I. -I.. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR -c
+number.c
+rm -f libbc.a
+ar cru libbc.a getopt.o getopt1.o vfprintf.o number.o
+Warning: u unrecognized switch
+%LIBRAR-W-COMCOD, compilation warnings in module VFPRINTF file
+USERS:[user4.bc-1^.06.lib]vfprintf.o;1
+: libbc.a
+make[2]: Leaving directory `/USERS/user4/bc-1.06/lib'
+Making all in bc
+make[2]: Entering directory `/USERS/user4/bc-1.06/bc'
+Makefile:169: warning: overriding commands for target `.s.o'
+Makefile:166: warning: ignoring old commands for target `.s.o'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c main.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c bc.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c scan.c
+
+              for (look = yytext; *look != 0; look++)
+...................^
+%CC-W-PTRMISMATCH1, In this statement, the referenced type of the pointer value
+"yytext" is "char", which is not compatible with "un
+signed char" because they differ by signed/unsigned attribute.
+at line number 319 in file USERS:[user4.bc-1^.06.bc]scan.l;1
+
+              src = yytext;
+..............^
+%CC-W-PTRMISMATCH1, In this statement, the referenced type of the pointer value
+"yytext" is "char", which is not compatible with "un
+signed char" because they differ by signed/unsigned attribute.
+at line number 335 in file USERS:[user4.bc-1^.06.bc]scan.l;1
+
+              dst = yytext;
+..............^
+%CC-W-PTRMISMATCH1, In this statement, the referenced type of the pointer value
+"yytext" is "char", which is not compatible with "un
+signed char" because they differ by signed/unsigned attribute.
+at line number 336 in file USERS:[user4.bc-1^.06.bc]scan.l;1
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c execute.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c load.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c storage.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c util.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I. -I./../h    -g -Wc/WARN -Wc/UNSIGNED_CHAR
+-c global.c
+gcc  -g -Wc/WARN -Wc/UNSIGNED_CHAR  -o bc  main.o bc.o scan.o execute.o load.o
+storage.o util.o global.o ../lib/libbc.a
+%LINK-W-WRNERS, compilation warnings
+        in module SCAN file USERS:[user4.bc-1^.06.bc]scan.o;1
+make[2]: Leaving directory `/USERS/user4/bc-1.06/bc'
+Making all in dc
+make[2]: Entering directory `/USERS/user4/bc-1.06/dc'
+Makefile:153: warning: overriding commands for target `.s.o'
+Makefile:150: warning: ignoring old commands for target `.s.o'
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c dc.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c misc.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c eval.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c stack.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c array.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c numeric.c
+gcc -DHAVE_CONFIG_H -I. -I. -I.. -I./.. -I./../h    -g -Wc/WARN
+-Wc/UNSIGNED_CHAR -c string.c
+gcc  -g -Wc/WARN -Wc/UNSIGNED_CHAR  -o dc  dc.o misc.o eval.o stack.o array.o
+numeric.o string.o ../lib/libbc.a
+make[2]: Leaving directory `/USERS/user4/bc-1.06/dc'
+Making all in doc
+make[2]: Entering directory `/USERS/user4/bc-1.06/doc'
+make[2]: Nothing to be done for `all'.
+make[2]: Leaving directory `/USERS/user4/bc-1.06/doc'
+make[2]: Entering directory `/USERS/user4/bc-1.06'
+make[2]: Leaving directory `/USERS/user4/bc-1.06'
+make[1]: Leaving directory `/USERS/user4/bc-1.06'
+bash$ cd bc
+bash$ bc
+bc 1.06
+Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+12*12
+144
+11^11
+285311670611
+11^2
+121
+121/11
+11
+q
+0
+ Exit
+bash$
+bash$ cd ../dc
+bash$ dc
+1 2 +
+p
+3
+11 2 ^ p
+121
+121 v p
+11
+12345 9 ^ p
+6659166111488656281486807152009765625
+q
+bash$
+bash$ exit
+$ tel 0
+%TELNET-I-TRYING, Trying ... 127.0.0.1
+%TELNET-I-SESSION, Session 01, host localhost, port 23
+-TELNET-I-ESCAPE, Escape character is ^]
+
+ Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+
+Username: system
+Password:
+   Welcome to OpenVMS (TM) Alpha Operating System, Version V7.3-2
+    Last interactive login on Tuesday, 25-MAY-2004 19:16:39.71
+    Last non-interactive login on Friday, 28-MAY-2004 20:38:33.38
+
+            You have 56 new Mail messages.
+
+
+$ set def users:[user4]
+$ bash
+bash$ cd bc-1.06
+bash$ ls
+AUTHORS      Makefile     aclocal.m4     configure     missing
+COPYING      Makefile.am  bc             configure.in  mkinstalldirs
+COPYING.LIB  Makefile.in  config.cache   dc            stamp-h
+ChangeLog    NEWS         config.h       doc           stamp-h.in
+Examples     README       config.h.in    h
+FAQ          Test         config.log     install-sh
+INSTALL      acconfig.h   config.status  lib
+bash$ make install
+Making install in lib
+make[1]: Entering directory `/users/user4/bc-1.06/lib'
+Makefile:132: warning: overriding commands for target `.s.o'
+Makefile:129: warning: ignoring old commands for target `.s.o'
+make[2]: Entering directory `/users/user4/bc-1.06/lib'
+Makefile:132: warning: overriding commands for target `.s.o'
+Makefile:129: warning: ignoring old commands for target `.s.o'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/users/user4/bc-1.06/lib'
+make[1]: Leaving directory `/users/user4/bc-1.06/lib'
+Making install in bc
+make[1]: Entering directory `/users/user4/bc-1.06/bc'
+Makefile:169: warning: overriding commands for target `.s.o'
+Makefile:166: warning: ignoring old commands for target `.s.o'
+make[2]: Entering directory `/users/user4/bc-1.06/bc'
+Makefile:169: warning: overriding commands for target `.s.o'
+Makefile:166: warning: ignoring old commands for target `.s.o'
+/bin/sh ../mkinstalldirs /usr/local/bin
+  /gnu/bin/install -c  bc /usr/local/bin/bc
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/users/user4/bc-1.06/bc'
+make[1]: Leaving directory `/users/user4/bc-1.06/bc'
+Making install in dc
+make[1]: Entering directory `/users/user4/bc-1.06/dc'
+Makefile:153: warning: overriding commands for target `.s.o'
+Makefile:150: warning: ignoring old commands for target `.s.o'
+make[2]: Entering directory `/users/user4/bc-1.06/dc'
+Makefile:153: warning: overriding commands for target `.s.o'
+Makefile:150: warning: ignoring old commands for target `.s.o'
+/bin/sh ../mkinstalldirs /usr/local/bin
+  /gnu/bin/install -c  dc /usr/local/bin/dc
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/users/user4/bc-1.06/dc'
+make[1]: Leaving directory `/users/user4/bc-1.06/dc'
+Making install in doc
+make[1]: Entering directory `/users/user4/bc-1.06/doc'
+make[2]: Entering directory `/users/user4/bc-1.06/doc'
+make[2]: Nothing to be done for `install-exec-am'.
+/bin/sh ../mkinstalldirs /usr/local/info
+ /gnu/bin/install -c -m 644 ./bc.info /usr/local/info/bc.info
+ /gnu/bin/install -c -m 644 ./dc.info /usr/local/info/dc.info
+make  install-man1
+make[3]: Entering directory `/users/user4/bc-1.06/doc'
+/bin/sh ../mkinstalldirs /usr/local/man/man1
+ /gnu/bin/install -c -m 644 ./bc.1 /usr/local/man/man1/bc.1
+ /gnu/bin/install -c -m 644 ./dc.1 /usr/local/man/man1/dc.1
+make[3]: Leaving directory `/users/user4/bc-1.06/doc'
+make[2]: Leaving directory `/users/user4/bc-1.06/doc'
+make[1]: Leaving directory `/users/user4/bc-1.06/doc'
+make[1]: Entering directory `/users/user4/bc-1.06'
+make[2]: Entering directory `/users/user4/bc-1.06'
+make[2]: Nothing to be done for `install-exec-am'.
+make[2]: Nothing to be done for `install-data-am'.
+make[2]: Leaving directory `/users/user4/bc-1.06'
+make[1]: Leaving directory `/users/user4/bc-1.06'
+bash$
+bash$ ls /usr/local/bin
+autoconf    autom4te    autoscan    bc     dc    flex++   patch  perl.EXE
+autoheader  autoreconf  autoupdate  bison  flex  ifnames  perl
+bash$ ls
+AUTHORS      Makefile     aclocal.m4     configure     missing
+COPYING      Makefile.am  bc             configure.in  mkinstalldirs
+COPYING.LIB  Makefile.in  config.cache   dc            stamp-h
+ChangeLog    NEWS         config.h       doc           stamp-h.in
+Examples     README       config.h.in    h
+FAQ          Test         config.log     install-sh
+INSTALL      acconfig.h   config.status  lib
+bash$ bc
+bc 1.06
+Copyright 1991-1994, 1997, 1998, 2000 Free Software Foundation, Inc.
+This is free software with ABSOLUTELY NO WARRANTY.
+For details type `warranty'.
+1+2
+3
+ Exit
+bash$
+bash$ exit
